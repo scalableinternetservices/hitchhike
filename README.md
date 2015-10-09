@@ -7,10 +7,10 @@ Have you ever wanted to explore the world but have no idea where to go? Hitchhik
 Brian Chang<br/>
 
 Gabriella Yang<br/>
-<img src="https://media.licdn.com/media/p/1/000/221/115/1d413d9.jpg" height="50px" width="50px"/><br/>
+<img src="https://media.licdn.com/media/p/1/000/221/115/1d413d9.jpg" height="150px" width="150px"/><br/>
 
-Jacob Moghtader
-<img src="https://media.licdn.com/media/p/6/005/08e/0bf/22657ad.jpg" height="50px" width="50px"/><br/>
+Jacob Moghtader<br/>
+<img src="https://media.licdn.com/media/p/6/005/08e/0bf/22657ad.jpg" height="150px" width="150px"/><br/>
 
-Jeffrey Tai
-<img src="https://media.licdn.com/media/AAEAAQAAAAAAAANCAAAAJGJhZmM2YTlhLTIzOWUtNGM5ZC1iNDQwLThmNjY5ZWY1MDZkNw.jpg" height="50px" width="50px"/><br/>
+Jeffrey Tai<br/>
+<img src="https://media.licdn.com/media/AAEAAQAAAAAAAANCAAAAJGJhZmM2YTlhLTIzOWUtNGM5ZC1iNDQwLThmNjY5ZWY1MDZkNw.jpg" height="150px" width="150px"/><br/>
