@@ -11,4 +11,4 @@
 /tmp
 
 #databse config for MyQSL
-/config/database.yml
+config/database.yml
