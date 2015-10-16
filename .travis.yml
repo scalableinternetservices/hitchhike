@@ -1,0 +1,4 @@
+language: ruby
+rvm:
+  - 1.26.11
+  - rbx-2.2.1
