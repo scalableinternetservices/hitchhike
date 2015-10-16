@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   devise_for :user do
     get 'signin' => 'devise/sessions#new', as: 'new_user_session'
     post 'signin' => 'devise/sessions#create', as: 'user_session'
-    #delete 'signout' => 'devise/sessions#destroy', as: 'destroy_user_session'
     get 'signup' => 'devise/registration#new', as: 'new_user_registration'
+    #delete 'signout' => 'devise/sessions#destroy', as: 'destroy_user_session'
   end
 
 
