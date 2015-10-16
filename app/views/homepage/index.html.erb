@@ -1,9 +1,11 @@
 <h1>Homepage</h1>
 
-<p>Testing testing</p>
-
-<%= link_to "Sign In", new_user_session_path %><br/><br/>
-
-<%= link_to "Sign Up", new_user_registration_path %><br/><br/>
-
-<!-- <%= link_to "Sign Out", destroy_user_session_path %> -->
+<% if user_signed_in? %>
+  <p>Currently logged in as <%= current_user.email %>.</p><br/>
+  <%= link_to "Sign Out", destroy_user_session_path,
+              method: :delete %>
+<% else %>
+  <p>You are currently not logged in.</p><br/>
+  <%= link_to "Sign In", new_user_session_path %><br/><br/>
+  <%= link_to "Sign Up", new_user_registration_path %><br/><br/>
+<% end %>
