@@ -5,6 +5,9 @@ class HomepageController < ApplicationController
     @trips = Trip.all
   end
 
+  def indexraw
+    @trips = Trip.all
+  end
   def sign_in
   end
 

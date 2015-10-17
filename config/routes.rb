@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :trips
   # You can have the root of your site routed with "root"
   root 'homepage#index'
-
+  get 'raw' => 'homepage#indexraw'
   resources :users, :only => [:show]
 
   devise_for :user do
