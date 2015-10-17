@@ -12,3 +12,5 @@
 
 #databse config for MyQSL
 config/database.yml
+
+Gemfile.lock
