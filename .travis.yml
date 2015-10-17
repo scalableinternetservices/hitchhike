@@ -4,6 +4,6 @@ rvm:
 env:
   - DB=mysql
 before_script:
-  - bundle exec rake db:migrate RAILS_ENV=test
+  - mysql -e 'create database hitchhike'
 script:
-  - bundle exec rake test
+  - RAILS_ENV=test bundle exec rake db:migrate
