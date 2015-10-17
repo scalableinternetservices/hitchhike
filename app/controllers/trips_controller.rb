@@ -66,9 +66,8 @@ class TripsController < ApplicationController
     def set_trip
       @trip = Trip.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:title, :description, :locations, :tags, :postdate, :user)
+      params.require(:trip).permit(:title, :description, :locations, :tags, :postdate).merge(:user => current_user.email)
     end
 end
