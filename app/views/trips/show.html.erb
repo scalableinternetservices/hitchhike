@@ -29,6 +29,16 @@
   <strong>User:</strong>
   <%= @trip.user %>
 </p>
-
+<h2>Comments</h2>
+<div id="comments">
+  <%= render :partial => @trip.comments %>
+</div>
+<%= form_for [@trip, Comment.new] do |f| %>
+    <p>
+      <%= f.label :body, "New comment" %><br/>
+      <%= f.text_area :body %>
+    </p>
+    <p><%= f.submit "Add comment" %></p>
+<% end %>
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>
