@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  resources :points
   resources :trips do
     resources :comments, :only => [:create]
   end
