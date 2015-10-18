@@ -63,3 +63,8 @@ group :development do
 end
 
 gem 'tzinfo-data'
+
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem 'sprockets-rails'
