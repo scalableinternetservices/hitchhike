@@ -1,11 +1,10 @@
-class HomepageController < ApplicationController
+cclass HomepageController < ApplicationController
   # skip_before_filter :authenticate_user!
 
-  def index
-    @trips = Trip.all
+  def splash
   end
 
-  def indexraw
+  def index
     @trips = Trip.all
   end
   def sign_in

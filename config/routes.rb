@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :points
-  resources :trips
+
+  resources :trips do
+    resources :comments, :only => [:create]
+  end
+
   # You can have the root of your site routed with "root"
-  root 'homepage#index'
-  get 'raw' => 'homepage#indexraw'
+  root 'homepage#splash'
+  get 'index' => 'homepage#index'
   resources :users, :only => [:show]
 
   devise_for :user do
