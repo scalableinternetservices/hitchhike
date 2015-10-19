@@ -1,22 +1,19 @@
 Rails.application.routes.draw do
 
+  root 'homepage#splash'
+  get 'index' => 'homepage#index'
+
+  # You can have the root of your site routed with "root"
+
+  devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }, controllers: { registrations: "users/registrations" }
+
+  resources :users, :only => [:show]
+
   resources :points
+
   resources :trips do
     resources :comments, :only => [:create]
   end
-
-  # You can have the root of your site routed with "root"
-  root 'homepage#splash'
-  get 'index' => 'homepage#index'
-  resources :users, :only => [:show]
-
-  devise_for :user do
-    get 'signin' => 'devise/sessions#new', as: 'new_user_session'
-    post 'signin' => 'devise/sessions#create', as: 'user_session'
-    get 'signup' => 'devise/registration#new', as: 'new_user_registration'
-    delete 'signout' => 'devise/sessions#destroy', as: 'destroy_user_session'
-  end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
