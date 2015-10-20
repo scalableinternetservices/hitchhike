@@ -7,6 +7,7 @@ class HomepageController < ApplicationController
   def index
     @trips = Trip.all
   end
+  
   def sign_in
   end
 
