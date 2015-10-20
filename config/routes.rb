@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show]
 
-  resources :points
 
   resources :trips do
     resources :comments, :only => [:create]
