@@ -68,3 +68,6 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'sprockets-rails'
+
+gem 'searchkick'
+gem 'kaminari'

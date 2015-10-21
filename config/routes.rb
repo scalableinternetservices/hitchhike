@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   resources :trips do
     resources :comments, :only => [:create]
+    collection do
+      get :autocomplete
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

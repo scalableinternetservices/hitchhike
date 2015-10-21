@@ -4,7 +4,12 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    #@trips = Trip.all
+    if params[:query].present?
+      @trips = Trip.search(params[:query], page: params[:page])
+    else
+      @trips = Trip.all.page params[:page]
+    end
   end
 
   # GET /trips/1
@@ -59,6 +64,10 @@ class TripsController < ApplicationController
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def autocomplete
+    render json: Trip.search(params[:query], autocomplete: true, limit: 10).map(&:title)
   end
 
   private
