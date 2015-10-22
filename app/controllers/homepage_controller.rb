@@ -7,7 +7,11 @@ class HomepageController < ApplicationController
   def index
     @trips = Trip.all
   end
-  
+
+  def account
+    @user = current_user
+  end
+
   def sign_in
   end
 
