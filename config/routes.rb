@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'homepage#splash'
+
   get 'account' => 'homepage#account'
 
   get 'trips' => 'trips#index'

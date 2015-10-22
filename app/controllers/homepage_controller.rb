@@ -4,10 +4,6 @@ class HomepageController < ApplicationController
   def splash
   end
 
-  def index
-    @trips = Trip.all
-  end
-
   def account
     @user = current_user
   end

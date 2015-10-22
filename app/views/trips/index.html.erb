@@ -37,21 +37,21 @@
         </thead>
 
         <tbody>
-        <% @trips.each do |trip| %>
-            <tr>
-              <td><%= trip.title %></td>
-              <td><%= trip.description %></td>
-              <td><%= trip.locations %></td>
-              <td><%= trip.tags %></td>
-              <td><%= trip.postdate %></td>
-              <td><%= trip.user %></td>
-              <td><%= link_to 'More', trip %></td>
-              <% if current_user.email == trip.user %>
-                  <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-                  <td><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <% end %>
-            </tr>
-        <% end %>
+          <% @trips.each do |trip| %>
+              <tr>
+                <td><%= trip.title %></td>
+                <td><%= trip.description %></td>
+                <td><%= trip.locations %></td>
+                <td><%= trip.tags %></td>
+                <td><%= trip.postdate %></td>
+                <td><%= @user.email %></td>
+                <td><%= link_to 'More', trip %></td>
+                <!-- <% if @user.id == trip.user_id %> -->
+                <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+                <td><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <!-- <% end %> -->
+              </tr>
+          <% end %>
         </tbody>
       </table>
 
