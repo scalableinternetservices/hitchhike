@@ -2,9 +2,8 @@ Rails.application.routes.draw do
 
   root 'homepage#splash'
   get 'index' => 'homepage#index'
-
-  # You can have the root of your site routed with "root"
-
+  get 'account' => 'homepage#account'
+  
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
 
   resources :users, :only => [:show]
