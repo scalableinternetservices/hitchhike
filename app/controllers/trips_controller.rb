@@ -67,7 +67,15 @@ class TripsController < ApplicationController
   end
 
   def autocomplete
-    render json: Trip.search(params[:query], autocomplete: true, limit: 10).map(&:title)
+    render json: Trip.search(params[:query], autocomplete: false, limit: 10).map(&:title)
+    #render json: Trip.search(params[:query], fields: [{title: :text_start}], limit: 10).map(&:title)
+    #render json: Trip.search(params[:query], autocomplete: false, limit: 10).map do
+    #  |trip| { title: trip.title }
+    #end
+  end
+
+  def typeahead
+    render json: Model.where('title ilike ?', "%#{params[:query]}%")
   end
 
   private

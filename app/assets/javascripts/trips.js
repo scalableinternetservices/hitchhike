@@ -1,26 +1,26 @@
 var ready;
 ready = function() {
-    var engine = new Bloodhound({
-        datumTokenizer: function(d) {
-            console.log(d);
-            return Bloodhound.tokenizers.whitespace(d.title);
-        },
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: {
-            url: '../trips/autocomplete?query=%QUERY'
-        }
+    var numbers = new Bloodhound({
+      remote: {url: "/trips/autocomplete?query=%QUERY",
+                    wildcard: '%QUERY'},
+      datumTokenizer: function(d) {
+              return Bloodhound.tokenizers.whitespace(d.name); },
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+
     });
 
-    var promise = engine.initialize();
+    // initialize the bloodhound suggestion engine
+
+    var promise = numbers.initialize();
 
     promise
-        .done(function() { console.log('success'); })
-        .fail(function() { console.log('err'); });
+    .done(function() { console.log('success!'); })
+    .fail(function() { console.log('err!'); });
 
-    $('.typeahead').typeahead(null, {
-        name: 'engine',
-        displayKey: 'title',
-        source: engine.ttAdapter()
+    // instantiate the typeahead UI
+    $( '#typeahead').typeahead(null, {
+      displayKey: 'name',
+      source: numbers.ttAdapter()
     });
 }
 
