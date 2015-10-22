@@ -5,6 +5,8 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     @trips = Trip.all
+    # @trips = Trip.find(params[:id])
+    @user = current_user
   end
 
   # GET /trips/1
