@@ -1,3 +1,4 @@
 class Trip < ActiveRecord::Base
-  has_many :comments, dependent: :destroy
+  has_many :comments
+  belongs_to :user
 end
