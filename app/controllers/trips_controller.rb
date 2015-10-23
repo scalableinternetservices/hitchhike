@@ -4,7 +4,9 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    # @trips = Trip.all
+    @user = current_user
+    @trips = Trip.where("user_id = #{@user.id}")
   end
 
   # GET /trips/1
@@ -68,6 +70,6 @@ class TripsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:title, :description, :locations, :tags, :postdate).merge(:user => current_user.email)
+      params.require(:trip).permit(:title, :description, :locations, :tags, :postdate).merge(:user => current_user, user_id: current_user.id)
     end
 end

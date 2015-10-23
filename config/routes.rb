@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
   root 'homepage#splash'
-  get 'index' => 'homepage#index'
+
   get 'account' => 'homepage#account'
 
+  get 'trips' => 'trips#index'
   get 'planner' => 'trips#planner'
   # You can have the root of your site routed with "root"
 
