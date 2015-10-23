@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'homepage#splash'
 
-  get 'account' => 'homepage#account'
+  get 'account/:username' => 'homepage#account'
 
   get 'trips' => 'trips#index'
   get 'planner' => 'trips#planner'

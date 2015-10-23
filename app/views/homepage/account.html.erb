@@ -1,4 +1,62 @@
-<%= render("shared/menu") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HitchHike</title>
 
-<br/><br/><br/><br/>
-<h1><%= @user.email %></h1>
+  <%= stylesheet_link_tag "bootstrap.min" %>
+
+</head>
+
+<body>
+  <%= render("shared/menu") %>
+
+  <br/><br/><br/>
+  <div class="container">
+
+    <% if @user.nil? %>
+      <h1 class="page-header">Invalid User</h1>
+    <% else %>
+      <h1 class="page-header"><%= @user.first_name %> <%= @user.last_name %>'s Trips</h1>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Locations</th>
+            <th>Tags</th>
+            <th>Postdate</th>
+            <th>User</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @trips.each do |trip| %>
+              <tr>
+                <td><%= trip.title %></td>
+                <td><%= trip.description %></td>
+                <td><%= trip.locations %></td>
+                <td><%= trip.tags %></td>
+                <td><%= trip.postdate %></td>
+                <td><%= @user.email %></td>
+                <td><%= link_to 'More', trip %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <% end %>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+  </body>
+</html>

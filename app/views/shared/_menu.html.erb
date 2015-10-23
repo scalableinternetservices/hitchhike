@@ -33,7 +33,8 @@
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
               <li><%= link_to "My Trips", trips_path %></li>
-              <li><%= link_to "Profile", account_path %></li>
+              <li><a href="/account/<%= @user.username %>">Profile</a></li>
+              <!-- must add profile to /account/:id url -->
               <li><%= link_to "Sign Out", destroy_user_session_path,
                           method: :delete %></li>
             <% else %>

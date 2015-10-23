@@ -5,7 +5,9 @@ class HomepageController < ApplicationController
   end
 
   def account
-    @user = current_user
+    #@username = params[:username]
+    @user = User.find_by(username: params[:username])
+    @trips = Trip.where("user_id = #{@user.id}")
   end
 
   def sign_in
