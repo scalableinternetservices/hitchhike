@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show]
 
-  resources :points
+  resources :points do
+    collection do
+      get :autocomplete
+    end
+  end
 
   resources :trips do
     resources :comments, :only => [:create]

@@ -4,7 +4,12 @@ class PointsController < ApplicationController
   # GET /points
   # GET /points.json
   def index
-    @points = Point.all
+    if params[:query].present?
+      @points = Point.search(params[:query])
+    else
+      @points = []
+    end
+    #@points = Point.all
     @hash = Gmaps4rails.build_markers(@points) do |point, marker|
       marker.lat point.latitude
       marker.lng point.longitude
@@ -63,6 +68,10 @@ class PointsController < ApplicationController
       format.html { redirect_to points_url, notice: 'Point was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def autocomplete
+    render json: Point.search(params[:query], autocomplete: true, limit: 10).map(&:location)
   end
 
   private
