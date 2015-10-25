@@ -5,8 +5,12 @@ class TripsController < ApplicationController
   # GET /trips.json
   def index
     # @trips = Trip.all
-    @user = current_user
-    @trips = Trip.where("user_id = #{@user.id}")
+    if user_signed_in?
+      @user = current_user
+      @trips = Trip.where("user_id = #{@user.id}")
+    elsif
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /trips/1

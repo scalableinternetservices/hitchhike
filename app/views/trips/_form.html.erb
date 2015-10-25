@@ -24,7 +24,7 @@
   </div>
   <div class="field">
     <%= f.label :locations %><br>
-
+    <%= f.hidden_field :locations, :id => 'locs'%>
     <script type="text/javascript">
       var row = 0;
       function initialize() {
@@ -32,7 +32,15 @@
           var autocomplete = new google.maps.places.Autocomplete(input);
           google.maps.event.addListener(autocomplete, 'place_changed', function () {
               var place = autocomplete.getPlace();
+              if (document.getElementById('locs').value.length == 0) {
+                document.getElementById('locs').value += place.name;
+              }
+              else {
+                document.getElementById('locs').value += ", " + place.name;
+              }
+
               document.getElementsByClassName('city')[row].value = place.name;
+              //document.getElementsByClassName('city')[row].setAttribute('readonly', 'readonly');
               document.getElementsByClassName('cityLat')[row].value = place.geometry.location.lat();
               document.getElementsByClassName('cityLng')[row].value = place.geometry.location.lng();
           });
@@ -72,9 +80,9 @@
     <div id="inputList">
       <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
       <div id="listFields1">
-        <input class="city"   />
-        <input class="cityLat"   />
-        <input class="cityLng"   />
+        <input class="city"   readonly/>
+        <input class="cityLat" type="hidden"  />
+        <input class="cityLng"  type="hidden" />
       </div>
     </div>
 

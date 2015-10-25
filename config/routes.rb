@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :points
   root 'homepage#splash'
 
-  get 'account' => 'homepage#account'
+  get 'account/:username' => 'homepage#account'
 
   get 'trips' => 'trips#index'
   get 'planner' => 'trips#planner'
@@ -12,6 +13,11 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show]
 
+  resources :points do
+    collection do
+      get :autocomplete
+    end
+  end
 
   resources :trips do
     resources :comments, :only => [:create]
