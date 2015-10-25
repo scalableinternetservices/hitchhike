@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :points
   root 'homepage#splash'
 
   get 'account/:username' => 'homepage#account'

@@ -1,3 +1,6 @@
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 <%= form_for(@trip) do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
@@ -21,8 +24,71 @@
   </div>
   <div class="field">
     <%= f.label :locations %><br>
-    <%= f.text_field :locations %>
+    <%= f.hidden_field :locations, :id => 'locs'%>
+    <script type="text/javascript">
+      var row = 0;
+      function initialize() {
+          var input = document.getElementById('searchTextField');
+          var autocomplete = new google.maps.places.Autocomplete(input);
+          google.maps.event.addListener(autocomplete, 'place_changed', function () {
+              var place = autocomplete.getPlace();
+              if (document.getElementById('locs').value.length == 0) {
+                document.getElementById('locs').value += place.name;
+              }
+              else {
+                document.getElementById('locs').value += ", " + place.name;
+              }
+
+              document.getElementsByClassName('city')[row].value = place.name;
+              //document.getElementsByClassName('city')[row].setAttribute('readonly', 'readonly');
+              document.getElementsByClassName('cityLat')[row].value = place.geometry.location.lat();
+              document.getElementsByClassName('cityLng')[row].value = place.geometry.location.lng();
+          });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+      $(document).ready(function(){
+          $("#addLocation").click(function(){
+            row++;
+            var list = $('div[id^="listFields1"]:last');
+            var num = parseInt( list.prop("id").match(/\d+/g), 10 ) +1;
+            var newList = list.clone().prop('id', 'listFields'+num ).appendTo( "#inputList" );;
+            var searchBox = document.getElementById("searchTextField");
+            searchBox.value = "";
+            var cities = document.getElementsByClassName('city');
+            for (var ii=row; ii < cities.length; ii++) {
+              if (cities[ii].type == "text") {
+                cities[ii].value = "";
+              }
+            }
+            var Lats = document.getElementsByClassName('cityLat');
+            for (var ii=row; ii < Lats.length; ii++) {
+              if (Lats[ii].type == "text") {
+                Lats[ii].value = "";
+              }
+            }
+            var Lngs = document.getElementsByClassName('cityLng');
+            for (var ii=row; ii < Lngs.length; ii++) {
+              if (Lngs[ii].type == "text") {
+                Lngs[ii].value = "";
+              }
+            }
+          });
+
+
+      });
+    </script>
+    <div id="inputList">
+      <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
+      <div id="listFields1">
+        <input class="city"   readonly/>
+        <input class="cityLat" type="hidden"  />
+        <input class="cityLng"  type="hidden" />
+      </div>
+    </div>
+
+    <input type="button" value="Add New Location" id="addLocation" />
   </div>
+
   <div class="field">
     <%= f.label :tags %><br>
     <%= f.text_field :tags %>
