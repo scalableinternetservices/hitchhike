@@ -4,8 +4,8 @@ class HomepageController < ApplicationController
   def splash
   end
 
+  # GET /account/:username
   def account
-    #@username = params[:username]
     @user = User.find_by(username: params[:username])
     @trips = Trip.where("user_id = #{@user.id}")
   end
