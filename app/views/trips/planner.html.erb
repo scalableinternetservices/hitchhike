@@ -23,7 +23,6 @@
           outline: none;
           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
-
       #pac-input {
           background-color: #fff;
           font-family: Roboto;
@@ -34,27 +33,22 @@
           text-overflow: ellipsis;
           width: 300px;
       }
-
       #pac-input:focus {
           border-color: #4d90fe;
       }
-
       .pac-container {
           font-family: Roboto;
       }
-
       #type-selector {
           color: #fff;
           background-color: #4d90fe;
           padding: 5px 11px 0px 11px;
       }
-
       #type-selector label {
           font-family: Roboto;
           font-size: 13px;
           font-weight: 300;
       }
-
   </style>
 </head>
 <body>
@@ -86,20 +80,16 @@
         });
         var input = /** @type {!HTMLInputElement} */(
                 document.getElementById('pac-input'));
-
         var types = document.getElementById('type-selector');
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo('bounds', map);
-
         var infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
             map: map,
             anchorPoint: new google.maps.Point(0, -29)
         });
-
         autocomplete.addListener('place_changed', function() {
             infowindow.close();
             marker.setVisible(false);
@@ -108,7 +98,6 @@
                 window.alert("Autocomplete's returned place contains no geometry");
                 return;
             }
-
             // If the place has a geometry, then present it on a map.
             if (place.geometry.viewport) {
                 map.fitBounds(place.geometry.viewport);
@@ -127,7 +116,6 @@
             }));
             marker.setPosition(place.geometry.location);
             marker.setVisible(true);
-
             var address = '';
             if (place.address_components) {
                 address = [
@@ -136,11 +124,9 @@
                     (place.address_components[2] && place.address_components[2].short_name || '')
                 ].join(' ');
             }
-
             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
             infowindow.open(map, marker);
         });
-
         // Sets a listener on a radio button to change the filter type on Places
         // Autocomplete.
         function setupClickListener(id, types) {
@@ -149,13 +135,11 @@
                 autocomplete.setTypes(types);
             });
         }
-
         setupClickListener('changetype-all', []);
         setupClickListener('changetype-address', ['address']);
         setupClickListener('changetype-establishment', ['establishment']);
         setupClickListener('changetype-geocode', ['geocode']);
     }
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=true&libraries=places&callback=initMap"
         async defer></script>
