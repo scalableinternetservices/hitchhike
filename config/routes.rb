@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :points
+  resources :locations
   root 'homepage#splash'
 
   get 'account/:username' => 'homepage#account'
@@ -13,14 +13,15 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:show]
 
-  resources :points do
-    collection do
-      get :autocomplete
-    end
-  end
+  #resources :points do
+  ##  collection do
+    #  get :autocomplete
+   # end
+  #end
 
   resources :trips do
     resources :comments, :only => [:create]
+    resources :locations, :only =>[:create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
