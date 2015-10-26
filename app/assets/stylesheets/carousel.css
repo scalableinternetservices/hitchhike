@@ -31,8 +31,17 @@ body {
 }
 .navbar-wrapper .navbar .container {
   width: auto;
+  height: auto;
 }
 
+.box{
+  margin-top: 8px;
+  width: 200px;
+}
+
+.search-button{
+  margin-top: 8px;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */

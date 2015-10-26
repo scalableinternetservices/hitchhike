@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20151022071420) do
   add_index "comments", ["trip_id"], name: "index_comments_on_trip_id", using: :btree
 
   create_table "points", force: :cascade do |t|
-    t.string   "latitude",   limit: 24
-    t.string   "longitude",  limit: 24
+    t.float    "latitude",   limit: 24
+    t.float    "longitude",  limit: 24
     t.string   "location",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
