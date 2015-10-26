@@ -1,5 +1,30 @@
-<h1>New Trip</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HitchHike</title>
 
-<%= render 'form' %>
+  <%= stylesheet_link_tag "bootstrap.min" %>
 
-<%= link_to 'Back', trips_path %>
+</head>
+
+<body>
+  <br/><br/><br/>
+  <div class="container">
+    <h1 class="page-header">New Trip</h1>
+
+    <%= render 'form' %>
+    <br/>
+    <%= link_to 'Back', trips_path %>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+</body>
+</html>
