@@ -18,9 +18,9 @@
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Explore</a></li>
             <li>
-              <%= form_tag points_path, method: :get do %>
+              <%= form_tag locations_path, method: :get do %>
                 <div class="box">
-                  <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: 'points-search', autocomplete: 'off', placeholder: 'Find a destination' %>
+                  <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: 'locations-search', autocomplete: 'off', placeholder: 'Find a destination' %>
                 </div>
             </li>
             <li>

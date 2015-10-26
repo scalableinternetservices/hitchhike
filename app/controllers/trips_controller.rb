@@ -8,7 +8,7 @@ class TripsController < ApplicationController
     if user_signed_in?
       @user = current_user
       @trips = Trip.where("user_id = #{@user.id}")
-    elsif
+    else
       redirect_to new_user_session_path
     end
   end
@@ -16,8 +16,13 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    @trip = Trip.find(params[:id])
-    @owner = User.where("id = #{@trip.user_id}")
+    if user_signed_in?
+      @trip = Trip.find(params[:id])
+      @owner = User.find(@trip.user_id)
+      @locations = Location.where("trip_id = #{@trip.id}")
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /trips/new
