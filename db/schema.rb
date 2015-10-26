@@ -33,14 +33,6 @@ ActiveRecord::Schema.define(version: 20151025234940) do
 
   add_index "locations", ["trip_id"], name: "index_locations_on_trip_id", using: :btree
 
-  create_table "points", force: :cascade do |t|
-    t.float    "latitude",   limit: 24
-    t.float    "longitude",  limit: 24
-    t.string   "location",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "trips", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -68,8 +60,8 @@ ActiveRecord::Schema.define(version: 20151025234940) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.string   "first_name",             limit: 255, default: ""
-    t.string   "last_name",              limit: 255, default: ""
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
     t.string   "username",               limit: 255
   end
 
