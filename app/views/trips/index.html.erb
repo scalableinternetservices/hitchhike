@@ -30,8 +30,7 @@
             <th>Description</th>
             <th>Locations</th>
             <th>Tags</th>
-            <th>Postdate</th>
-            <th>User</th>
+            <th>Created Date</th>
           </tr>
         </thead>
 
@@ -40,15 +39,16 @@
               <tr>
                 <td><%= trip.title %></td>
                 <td><%= trip.description %></td>
-                <td><%= trip.locations %></td>
+                <td>
+                  <% trip.locations.each do |loc| %>
+                    <%= loc.name %>,
+                  <% end %>
+                </td>
                 <td><%= trip.tags %></td>
                 <td><%= trip.postdate %></td>
-                <td><%= @user.email %></td>
                 <td><%= link_to 'More', trip %></td>
-                <!-- <% if @user.id == trip.user_id %> -->
                 <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
                 <td><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <!-- <% end %> -->
               </tr>
           <% end %>
         </tbody>
