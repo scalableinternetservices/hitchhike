@@ -1,4 +1,4 @@
 class Trip < ActiveRecord::Base
-  searchkick text_start: [:title], autocomplete: ['title']
-  has_many :comments
+  has_many :comments, dependent: :destroy
+  belongs_to :user
 end

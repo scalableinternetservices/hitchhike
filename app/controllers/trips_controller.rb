@@ -4,17 +4,20 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    #@trips = Trip.all
-    if params[:query].present?
-      @trips = Trip.search(params[:query], page: params[:page])
-    else
-      @trips = Trip.all.page params[:page]
+    # @trips = Trip.all
+    if user_signed_in?
+      @user = current_user
+      @trips = Trip.where("user_id = #{@user.id}")
+    elsif
+      redirect_to new_user_session_path
     end
   end
 
   # GET /trips/1
   # GET /trips/1.json
   def show
+    @trip = Trip.find(params[:id])
+    @owner = User.where("id = #{@trip.user_id}")
   end
 
   # GET /trips/new
@@ -85,6 +88,6 @@ class TripsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:title, :description, :locations, :tags, :postdate).merge(:user => current_user.email)
+      params.require(:trip).permit(:title, :description, :locations, :tags, :postdate).merge(:user => current_user, user_id: current_user.id)
     end
 end

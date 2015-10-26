@@ -70,5 +70,6 @@ gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'sprockets-rails'
 
+gem 'gmaps-autocomplete-rails'
 gem 'searchkick'
 gem 'kaminari'
