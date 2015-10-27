@@ -11,7 +11,8 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.css )
 Rails.application.config.assets.precompile += %w( carousel.css )
-
+Rails.application.config.assets.precompile += %w( css.css )
+Rails.application.config.assets.precompile += %w( endvrs-style.css )
 Rails.application.config.assets.precompile += %w( ie-emulation-modes-warning.js )
 Rails.application.config.assets.precompile += %w( ie10-viewport-bug-workaround.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
