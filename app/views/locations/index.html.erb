@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HitchHike</title>
+
+  <%= stylesheet_link_tag "bootstrap.min" %>
+  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.3/typeahead.min.js" %>
+
+</head>
+
+<body>
+
+  <br/><br/><br/>
+  <div class="container">
+
+    <% if user_signed_in? %>
+      <h4 class="page-header">Results for "<%= params[:query] %>"</h4>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Locations</th>
+            <th>Tags</th>
+            <th>Created Date</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @locations.each do |location| %>
+            <% @trip = Trip.find_by(id: location.trip_id) %>
+              <tr>
+                <td><%= @trip.title %></td>
+                <td><%= @trip.description %></td>
+                <td><%= location.name %></td>
+                <td><%= @trip.tags %></td>
+                <td><%= @trip.created_at %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <% end %>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+  </body>
+</html>
