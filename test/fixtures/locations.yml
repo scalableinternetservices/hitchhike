@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trip_id: 
+  lat: MyText
+  lng: MyText
+  name: MyText
+
+two:
+  trip_id: 
+  lat: MyText
+  lng: MyText
+  name: MyText

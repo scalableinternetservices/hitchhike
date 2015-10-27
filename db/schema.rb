@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025000833) do
+ActiveRecord::Schema.define(version: 20151025234940) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "trip_id",    limit: 4
@@ -22,13 +22,16 @@ ActiveRecord::Schema.define(version: 20151025000833) do
 
   add_index "comments", ["trip_id"], name: "index_comments_on_trip_id", using: :btree
 
-  create_table "points", force: :cascade do |t|
-    t.float   "latitude",   limit: 24
-    t.float   "longitude",  limit: 24
-    t.string   "location",   limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "locations", force: :cascade do |t|
+    t.integer  "trip_id",    limit: 4
+    t.text     "lat",        limit: 65535
+    t.text     "lng",        limit: 65535
+    t.text     "name",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
+
+  add_index "locations", ["trip_id"], name: "index_locations_on_trip_id", using: :btree
 
   create_table "trips", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -57,8 +60,8 @@ ActiveRecord::Schema.define(version: 20151025000833) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.string   "first_name",             limit: 255, default: ""
-    t.string   "last_name",              limit: 255, default: ""
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
     t.string   "username",               limit: 255
   end
 
@@ -67,4 +70,5 @@ ActiveRecord::Schema.define(version: 20151025000833) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "comments", "trips"
+  add_foreign_key "locations", "trips"
 end

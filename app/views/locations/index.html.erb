@@ -7,6 +7,7 @@
   <title>HitchHike</title>
 
   <%= stylesheet_link_tag "bootstrap.min" %>
+  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.3/typeahead.min.js" %>
 
 </head>
 
@@ -15,10 +16,8 @@
   <br/><br/><br/>
   <div class="container">
 
-    <% if @user.nil? %>
-      <h1 class="page-header">Invalid User</h1>
-    <% else %>
-      <h1 class="page-header"><%= @user.first_name %> <%= @user.last_name %>'s Trips</h1>
+    <% if user_signed_in? %>
+      <h4 class="page-header">Results for "<%= params[:query] %>"</h4>
 
       <table class="table">
         <thead>
@@ -27,21 +26,19 @@
             <th>Description</th>
             <th>Locations</th>
             <th>Tags</th>
-            <th>Postdate</th>
-            <th>User</th>
+            <th>Created Date</th>
           </tr>
         </thead>
 
         <tbody>
-          <% @trips.each do |trip| %>
+          <% @locations.each do |location| %>
+            <% @trip = Trip.find_by(id: location.trip_id) %>
               <tr>
-                <td><%= trip.title %></td>
-                <td><%= trip.description %></td>
-                <td><%= trip.locations %></td>
-                <td><%= trip.tags %></td>
-                <td><%= trip.postdate %></td>
-                <td><%= @user.email %></td>
-                <td><%= link_to 'More', trip %></td>
+                <td><%= @trip.title %></td>
+                <td><%= @trip.description %></td>
+                <td><%= location.name %></td>
+                <td><%= @trip.tags %></td>
+                <td><%= @trip.created_at %></td>
               </tr>
           <% end %>
         </tbody>

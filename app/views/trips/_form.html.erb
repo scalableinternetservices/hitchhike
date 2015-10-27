@@ -27,22 +27,20 @@
     <%= f.hidden_field :locations, :id => 'locs'%>
     <script type="text/javascript">
       var row = 0;
+      var locs = [];
       function initialize() {
           var input = document.getElementById('searchTextField');
           var autocomplete = new google.maps.places.Autocomplete(input);
           google.maps.event.addListener(autocomplete, 'place_changed', function () {
               var place = autocomplete.getPlace();
-              if (document.getElementById('locs').value.length == 0) {
-                document.getElementById('locs').value += place.name;
-              }
-              else {
-                document.getElementById('locs').value += ", " + place.name;
-              }
+
 
               document.getElementsByClassName('city')[row].value = place.name;
               //document.getElementsByClassName('city')[row].setAttribute('readonly', 'readonly');
               document.getElementsByClassName('cityLat')[row].value = place.geometry.location.lat();
               document.getElementsByClassName('cityLng')[row].value = place.geometry.location.lng();
+              locs.push({'lat': place.geometry.location.lat(), 'lng': place.geometry.location.lng(), 'name': place.name})
+              document.getElementById('locs').value = JSON.stringify(locs);
           });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
@@ -97,6 +95,7 @@
     <%= f.label :postdate %><br>
     <%= f.datetime_select :postdate %>
   </div>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

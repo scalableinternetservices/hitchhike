@@ -8,7 +8,7 @@ class TripsController < ApplicationController
     if user_signed_in?
       @user = current_user
       @trips = Trip.where("user_id = #{@user.id}")
-    elsif
+    else
       redirect_to new_user_session_path
     end
   end
@@ -16,6 +16,13 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
+    if user_signed_in?
+      @trip = Trip.find(params[:id])
+      @owner = User.find(@trip.user_id)
+      @locations = Location.where("trip_id = #{@trip.id}")
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /trips/new
@@ -31,6 +38,12 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
+    @trip.save
+    params.require(:trip)
+    jsonloc = JSON.parse(params[:trip][:locations])
+    jsonloc.each do |location|
+      @trip.locations.create!(location)
+    end
 
     respond_to do |format|
       if @trip.save
@@ -74,6 +87,11 @@ class TripsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:title, :description, :locations, :tags, :postdate).merge(:user => current_user, user_id: current_user.id)
+      params.require(:trip).permit(:title, :description, :tags, :postdate)
+          .merge(:user => current_user, user_id: current_user.id)
+    end
+
+    def location_param
+      JSON.parse(params.permit![:locations])
     end
 end
