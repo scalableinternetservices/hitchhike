@@ -28,7 +28,6 @@
             <th>Locations</th>
             <th>Tags</th>
             <th>Postdate</th>
-            <th>User</th>
           </tr>
         </thead>
 
@@ -37,10 +36,11 @@
               <tr>
                 <td><%= trip.title %></td>
                 <td><%= trip.description %></td>
-                <td><%= trip.locations %></td>
+                <td>
+                  <%= trip.locations.map{|loc| loc.name}.join(", ") %>
+                </td>
                 <td><%= trip.tags %></td>
                 <td><%= trip.postdate %></td>
-                <td><%= @user.email %></td>
                 <td><%= link_to 'More', trip %></td>
               </tr>
           <% end %>

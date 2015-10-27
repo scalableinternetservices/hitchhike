@@ -3,6 +3,8 @@
 <head>
   <title>Hitchhike</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'css' %>
+  <%= stylesheet_link_tag "endvrs-style" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -13,9 +15,7 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-
 <%= render("shared/menu") %>
-
 
 </body>
 </html>
