@@ -14,19 +14,17 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Home", root_url %></li>
-            <li><a href="#about">About</a></li>
             <li><a href="#contact">Explore</a></li>
             <% if user_signed_in? %>
             <li>
               <%= form_tag locations_path, method: :get do %>
-                <div class="box">
+                <div class="master-search">
                   <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: 'locations-search', autocomplete: 'off', placeholder: 'Find a destination' %>
                 </div>
             </li>
             <li>
                 <div class="search-button">
-                  <%= submit_tag 'Search', class: 'btn btn-primary' %>
+                  <%= submit_tag '', class: 'btn btn-primary glyphicon glyphicon-search' %>
                 </div>
               <% end %>
             </li>
