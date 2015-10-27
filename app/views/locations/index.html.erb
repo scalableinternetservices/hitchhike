@@ -7,6 +7,7 @@
   <title>HitchHike</title>
 
   <%= stylesheet_link_tag "bootstrap.min" %>
+  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.3/typeahead.min.js" %>
 
 </head>
 
@@ -16,10 +17,7 @@
   <div class="container">
 
     <% if user_signed_in? %>
-      <h1 class="page-header">My Trips</h1>
-
-      <!-- <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> -->
-      <%= button_to 'New Trip', new_trip_path, :method => :get, class: 'btn btn-sm pull-right' %>
+      <h4 class="page-header">Results for "<%= params[:query] %>"</h4>
 
       <table class="table">
         <thead>
@@ -33,20 +31,14 @@
         </thead>
 
         <tbody>
-          <% @trips.each do |trip| %>
+          <% @locations.each do |location| %>
+            <% @trip = Trip.find_by(id: location.trip_id) %>
               <tr>
-                <td><%= trip.title %></td>
-                <td><%= trip.description %></td>
-                <td>
-                  <% trip.locations.each do |loc| %>
-                    <%= loc.name %>,
-                  <% end %>
-                </td>
-                <td><%= trip.tags %></td>
-                <td><%= trip.postdate %></td>
-                <td><%= link_to 'More', trip %></td>
-                <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
-                <td><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= @trip.title %></td>
+                <td><%= @trip.description %></td>
+                <td><%= location.name %></td>
+                <td><%= @trip.tags %></td>
+                <td><%= @trip.created_at %></td>
               </tr>
           <% end %>
         </tbody>

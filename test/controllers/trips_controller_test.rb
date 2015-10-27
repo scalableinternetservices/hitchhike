@@ -2,6 +2,8 @@ require 'test_helper'
 
 class TripsControllerTest < ActionController::TestCase
   setup do
+    user = users(:one)
+    sign_in user
     @trip = trips(:one)
   end
 
