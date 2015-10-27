@@ -18,10 +18,8 @@
     <% if user_signed_in? %>
       <h1 class="page-header">My Trips</h1>
 
-      <button class="btn btn-sm btn-success pull-right">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        <%= link_to 'New Trip', new_trip_path %>
-      </button>
+      <!-- <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> -->
+      <%= button_to 'New Trip', new_trip_path, :method => :get, class: 'btn btn-sm pull-right' %>
 
       <table class="table">
         <thead>
