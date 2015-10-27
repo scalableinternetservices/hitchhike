@@ -37,9 +37,7 @@
                 <td><%= trip.title %></td>
                 <td><%= trip.description %></td>
                 <td>
-                  <% trip.locations.each do |loc| %>
-                    <%= loc.name %>, 
-                  <% end %>
+                  <%= trip.locations.map{|loc| loc.name}.join(", ") %>
                 </td>
                 <td><%= trip.tags %></td>
                 <td><%= trip.postdate %></td>
