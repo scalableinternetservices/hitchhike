@@ -19,14 +19,14 @@
   <% if user_signed_in? %>
       <h1 class="page-header">My Trips</h1>
 
-      <button class="btn btn-sm btn-success pull-right">
+      <button class="btn btn-medium pull-right">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         <%= link_to 'New Trip', new_trip_path %>
       </button>
-      <div class="col-sm-12 discover-result" id="discover-result" style="text-align: left;">
+      <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
         <div id="page-container">
       <% @trips.each do |trip| %>
-          <div class="col-sm-5 col-sm-offset-1 users-badge-master">
+          <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
               <div class="row users-badge-image" style="background-image: url(http://www.madmanblog.com/wp-content/uploads/2012/08/Rome-Google-Map.jpg)">
               </div>
               <div class="row users-badge-title">

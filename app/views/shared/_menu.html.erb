@@ -14,8 +14,6 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Home", root_url %></li>
-            <li><a href="#about">About</a></li>
             <li><a href="#contact">Explore</a></li>
             <li>
               <%= form_tag locations_path, method: :get do %>
@@ -25,7 +23,7 @@
             </li>
             <li>
                 <div class="search-button">
-                  <%= submit_tag 'Search', class: 'btn btn-primary' %>
+                  <%= submit_tag '', class: 'btn btn-primary glyphicon glyphicon-search' %>
                 </div>
               <% end %>
             </li>
