@@ -2,12 +2,16 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    if params[:query].present?
-      @locations = Location.search(params[:query], page: params[:page])
+    if user_signed_in?
+      if params[:query].present?
+        @locations = Location.search(params[:query], page: params[:page])
+      else
+        @locations = []
+      end
     else
-      @locations = []
+      redirect_to new_user_session_path
     end
-    #@locations = Location.all
+
   end
 
   def create

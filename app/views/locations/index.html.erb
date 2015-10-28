@@ -16,35 +16,34 @@
   <br/><br/><br/>
   <div class="container">
 
-    <% if user_signed_in? %>
-      <h4 class="page-header">Results for "<%= params[:query] %>"</h4>
+    <h4 class="page-header">Results for "<%= params[:query] %>"</h4>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Locations</th>
-            <th>Tags</th>
-            <th>Created Date</th>
-          </tr>
-        </thead>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Locations</th>
+          <th>Tags</th>
+          <th>Created Date</th>
+        </tr>
+      </thead>
 
-        <tbody>
-          <% @locations.each do |location| %>
-            <% @trip = Trip.find_by(id: location.trip_id) %>
-              <tr>
-                <td><%= @trip.title %></td>
-                <td><%= @trip.description %></td>
-                <td><%= location.name %></td>
-                <td><%= @trip.tags %></td>
-                <td><%= @trip.created_at %></td>
-              </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <tbody>
+        <% @locations.each do |location| %>
+          <% @trip = Trip.find_by(id: location.trip_id) %>
+            <tr>
+              <td><%= @trip.title %></td>
+              <td><%= @trip.description %></td>
+              <td><%= @trip.locations.map{|loc| loc.name}.join(", ") %></td>
+              <td><%= @trip.tags %></td>
+              <td><%= @trip.created_at %></td>
+              <td><%= link_to "More", "/trips/#{@trip.id}" %></td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-    <% end %>
 
   </div>
 

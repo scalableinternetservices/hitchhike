@@ -8,6 +8,30 @@
 
   <%= stylesheet_link_tag "bootstrap.min" %>
 
+  <style>
+    a[href^="http://maps.google.com/maps"]{display:none !important}
+    a[href^="https://maps.google.com/maps"]{display:none !important}
+
+    .gmnoprint a, .gmnoprint span, .gm-style-cc {
+      display:none;
+    }
+    .gmnoprint div {
+      background:none !important;
+    }
+    div.profile-photo img {
+      display:none;
+    }
+    div.login-control {
+      display:none;
+    }
+    .tooltip-anchor, .tooltip-tip-inner, .tooltip-content {
+      display:none;
+    }
+    #map div div a div img {
+      display:none;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -54,8 +78,7 @@
         function initMap() {
           <% @trips.each_with_index do |trip, index| %>
             var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
-                //center: firstLoc,
-                center: {lat: 34.0522342, lng: -118.2436849},
+                center: {lat: <%= trip.locations.first.lat %>, lng: <%= trip.locations.first.lng %>},
                 zoom: 10,
                 mapTypeControl: false,
                 disableDefaultUI: true,
@@ -65,9 +88,10 @@
             });
           <% end %>
         }
+
       </script>
 
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=true&libraries=places&callback=initMap"
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
               async defer></script>
   <% end %>
 </div>
