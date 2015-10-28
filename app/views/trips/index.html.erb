@@ -20,13 +20,15 @@
       <h1 class="page-header">My Trips</h1>
 
       <%= button_to 'New Trip', new_trip_path, method: :get, class: 'pull-right' %>
-      
+
       <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
         <div id="page-container">
-      <% @trips.each do |trip| %>
+      <% @trips.each_with_index do |trip, index| %>
           <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-              <div class="row users-badge-image" style="background-image: url(http://www.madmanblog.com/wp-content/uploads/2012/08/Rome-Google-Map.jpg)">
+              <div class="row users-badge-image" id="map<%= index %>">
+<!-- style="background-image: url(http://www.madmanblog.com/wp-content/uploads/2012/08/Rome-Google-Map.jpg)" -->
               </div>
+
               <div class="row users-badge-title">
                 <%= trip.title %>
               </div>
@@ -34,8 +36,8 @@
 
             <div class="row users-badge-school-subtitle">
               <% trip.locations.each do |loc| %>
-                  <%= loc.name %><br>
-              <% end %>'
+                  <%= loc.name %><br/>
+              <% end %>
             </div>
             <div class="row users-badge-subtitle">
                 <%= trip.postdate %>
@@ -47,6 +49,26 @@
 
           </div>
       <% end %>
+
+      <script>
+        function initMap() {
+          <% @trips.each_with_index do |trip, index| %>
+            var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
+                //center: firstLoc,
+                center: {lat: 34.0522342, lng: -118.2436849},
+                zoom: 10,
+                mapTypeControl: false,
+                disableDefaultUI: true,
+                scrollwheel: false,
+                draggable: false,
+                disableDoubleClickZoom: true
+            });
+          <% end %>
+        }
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=true&libraries=places&callback=initMap"
+              async defer></script>
   <% end %>
 </div>
   </div>
