@@ -14,6 +14,10 @@ class HomepageController < ApplicationController
     end
   end
 
+  def explore
+    @trips = Trip.order(created_at: :desc)
+  end
+
   def sign_in
   end
 
