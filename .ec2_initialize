@@ -1,2 +1,4 @@
 sudo yum install -y patch
 sudo yum install -y sqlite-devel
+wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.0.0/elasticsearch-2.0.0.tar.gz
+./elasticsearch-2.0.0/bin/elasticsearch
