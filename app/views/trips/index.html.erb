@@ -9,82 +9,92 @@
   <%= stylesheet_link_tag "bootstrap.min" %>
 
   <style>
-    a[href^="http://maps.google.com/maps"]{display:none !important}
-    a[href^="https://maps.google.com/maps"]{display:none !important}
+      a[href^="http://maps.google.com/maps"] {
+          display: none !important
+      }
 
-    .gmnoprint a, .gmnoprint span, .gm-style-cc {
-      display:none;
-    }
-    .gmnoprint div {
-      background:none !important;
-    }
-    #map div div a div img {
-      display:none;
-    }
+      a[href^="https://maps.google.com/maps"] {
+          display: none !important
+      }
+
+      .gmnoprint a, .gmnoprint span, .gm-style-cc {
+          display: none;
+      }
+
+      .gmnoprint div {
+          background: none !important;
+      }
+
+      #map div div a div img {
+          display: none;
+      }
   </style>
 
 </head>
 
 <body>
 
-  <br/><br/><br/>
+<br/><br/><br/>
 
-  <div class="container">
+<div class="container">
 
-      <h1 class="page-header">My Trips</h1>
+  <h1 class="page-header">My Trips</h1>
 
-      <%= button_to 'New Trip', new_trip_path, method: :get, class: 'pull-right' %>
+  <%= button_to 'New Trip', new_trip_path, method: :get, class: 'pull-right' %>
 
-      <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
-        <div id="page-container">
-          <% @trips.each_with_index do |trip, index| %>
-              <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-                  <div class="row users-badge-image" id="map<%= index %>">
-                  </div>
+  <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
+    <div id="page-container">
+      <% @trips.each_with_index do |trip, index| %>
+          <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
+            <div class="row users-badge-image" id="map<%= index %>">
+            </div>
+            <div class="row users-badge-subtitle">
+              <span style="float: left;"><%= link_to 'Edit', edit_trip_path(trip) %></span>
+              <span style="float: right;"><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+            </div>
+            <div class="row users-badge-title">
+              <%= trip.title %>
+            </div>
 
-                  <div class="row users-badge-title">
-                    <%= trip.title %>
-                  </div>
-
-                <div class="row users-badge-school-subtitle">
-                  <% trip.locations.each do |loc| %>
-                      <%= loc.name %><br/>
-                  <% end %>
-                </div>
-
-                <div class="row users-badge-subtitle">
-                    <%= trip.postdate %>
-                </div>
-
-                <div class="row users-badge-more-btn">
-                  <%= link_to 'More', trip, class: "users-badge-button"%>
-                </div>
-
-              </div>
-          <% end %>
-
-          <script>
-            function initMap() {
-              <% @trips.each_with_index do |trip, index| %>
-                var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
-                    center: {lat: <%= trip.locations.first.lat %>, lng: <%= trip.locations.first.lng %>},
-                    zoom: 10,
-                    mapTypeControl: false,
-                    disableDefaultUI: true,
-                    scrollwheel: false,
-                    draggable: false,
-                    disableDoubleClickZoom: true
-                });
+            <div class="row users-badge-school-subtitle">
+              <% trip.locations.each do |loc| %>
+                  <%= loc.name %><br/>
               <% end %>
-            }
+            </div>
 
-          </script>
+            <div class="row users-badge-subtitle">
+              <%= trip.postdate %>
+            </div>
 
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
+            <div class="row users-badge-more-btn">
+              <%= link_to 'Explore', trip, class: "users-badge-button" %>
+            </div>
+
+          </div>
+      <% end %>
+
+      <script>
+          function initMap() {
+              <% @trips.each_with_index do |trip, index| %>
+              var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
+                  center: {lat: <%= trip.locations.first.lat %>, lng: <%= trip.locations.first.lng %>},
+                  zoom: 10,
+                  mapTypeControl: false,
+                  disableDefaultUI: true,
+                  scrollwheel: false,
+                  draggable: false,
+                  disableDoubleClickZoom: true
+              });
+              <% end %>
+          }
+
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
               async defer></script>
-        </div>
-      </div>
+    </div>
   </div>
+</div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
