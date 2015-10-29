@@ -4,7 +4,8 @@ class LocationsController < ApplicationController
   def index
     if user_signed_in?
       if params[:query].present?
-        @locations = Location.search(params[:query], page: params[:page])
+        #@locations = Location.search(params[:query], page: params[:page])
+        @locations = Location.all
       else
         @locations = []
       end
@@ -18,7 +19,7 @@ class LocationsController < ApplicationController
     @location = Location.new(params)
   end
 
-  def autocomplete
-    render json: Trip.search(params[:query], autocomplete: true, limit: 10).map(&:name)
-  end
+  #def autocomplete
+  #  render json: Trip.search(params[:query], autocomplete: true, limit: 10).map(&:name)
+  #end
 end
