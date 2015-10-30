@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   resources :users, :only => [:show]
 
   resources :locations do
-    collection do
-      get :autocomplete
-    end
+    #collection do
+    #  get :autocomplete
+    #end
   end
 
   resources :trips do
