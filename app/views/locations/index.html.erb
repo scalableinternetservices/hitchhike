@@ -41,8 +41,13 @@
 
   <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
     <div id="page-container">
+      <% unique_trips = Set.new %>
       <% @locations.each do |location, index| %>
           <% @trip = Trip.find_by(id: location.trip_id) %>
+          <% if unique_trips.include?(@trip) %>
+            <% next %>
+          <% end %>
+          <% unique_trips.add(@trip) %>
           <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
             <div class="row users-badge-image" id="map<%= index %>">
             </div>
