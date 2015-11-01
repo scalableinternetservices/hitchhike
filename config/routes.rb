@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   root 'homepage#splash'
 
   get 'account/:username' => 'homepage#account'
+  get 'explore' => 'homepage#explore'
 
   get 'trips' => 'trips#index'
   get 'planner' => 'trips#planner'
+
   # You can have the root of your site routed with "root"
 
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
@@ -14,9 +16,9 @@ Rails.application.routes.draw do
   resources :users, :only => [:show]
 
   resources :locations do
-    collection do
-      get :autocomplete
-    end
+    #collection do
+    #  get :autocomplete
+    #end
   end
 
   resources :trips do
