@@ -80,6 +80,18 @@ class TripsController < ApplicationController
     end
   end
 
+  #def autocomplete
+  #  render json: Trip.search(params[:query], autocomplete: false, limit: 10).map(&:title)
+  #end
+
+  def self.search(query)
+      where("title LIKE ?", "%#{query}%")
+  end
+
+  def typeahead
+    render json: Model.where('title ilike ?', "%#{params[:query]}%")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trip
