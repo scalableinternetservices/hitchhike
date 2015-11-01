@@ -27,11 +27,24 @@ class TripsController < ApplicationController
 
   # GET /trips/new
   def new
-    @trip = Trip.new
+    if user_signed_in?
+      @trip = Trip.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /trips/1/edit
   def edit
+    if user_signed_in?
+      @trip = Trip.find(params[:id])
+      @owner = User.find(@trip.user_id)
+      if current_user.username != @owner.username
+        redirect_to "/trips"
+      end
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # POST /trips
