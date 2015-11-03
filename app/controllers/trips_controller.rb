@@ -27,11 +27,24 @@ class TripsController < ApplicationController
 
   # GET /trips/new
   def new
-    @trip = Trip.new
+    if user_signed_in?
+      @trip = Trip.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /trips/1/edit
   def edit
+    if user_signed_in?
+      @trip = Trip.find(params[:id])
+      @owner = User.find(@trip.user_id)
+      if current_user.username != @owner.username
+        redirect_to "/trips"
+      end
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # POST /trips
@@ -78,6 +91,18 @@ class TripsController < ApplicationController
       format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  #def autocomplete
+  #  render json: Trip.search(params[:query], autocomplete: false, limit: 10).map(&:title)
+  #end
+
+  def self.search(query)
+      where("title LIKE ?", "%#{query}%")
+  end
+
+  def typeahead
+    render json: Model.where('title ilike ?', "%#{params[:query]}%")
   end
 
   private

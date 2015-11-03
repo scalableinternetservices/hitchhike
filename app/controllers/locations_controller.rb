@@ -4,8 +4,8 @@ class LocationsController < ApplicationController
   def index
     if user_signed_in?
       if params[:query].present?
-        #@locations = Location.search(params[:query], page: params[:page])
-        @locations = Location.all
+        @locations = Location.search(params[:query])
+        #@locations = Location.all
       else
         @locations = []
       end
