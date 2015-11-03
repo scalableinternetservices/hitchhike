@@ -1,6 +1,14 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<head>
+<style>
+#ExistingLocations {
+    margin: 0; padding: 0;
+}
+</style>
+</head>
+
 <%= form_for(@trip) do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
@@ -25,6 +33,11 @@
   <div class="field">
     <%= f.label :locations %><br>
     <%= f.hidden_field :locations, :id => 'locs'%>
+    <ul id="ExistingLocations">
+      <% @trip.locations.each do |location| %>
+        <li><%= location.name %></li>
+      <% end %>
+    </ul>
     <script type="text/javascript">
       var row = 0;
       var locs = [];
