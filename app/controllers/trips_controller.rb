@@ -1,3 +1,5 @@
+
+
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
@@ -18,8 +20,18 @@ class TripsController < ApplicationController
   def show
     if user_signed_in?
       @trip = Trip.find(params[:id])
+      @trips = Trip.where("user_id = #{current_user.id}")
+      theirTrips = []
+      @trips.each do |trip|
+        theirTrips.push(trip.id.to_s)
+      end
+      theirTrips.push(@trip.id.to_s)
       @owner = User.find(@trip.user_id)
       @locations = Location.where("trip_id = #{@trip.id}")
+
+      $recommender.user_trip_recommends.add_set(current_user.id, theirTrips)
+      $recommender.process!
+      @recommendations = $recommender.for(params[:id])
     else
       redirect_to new_user_session_path
     end

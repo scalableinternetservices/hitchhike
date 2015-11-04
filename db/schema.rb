@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20151025234940) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.string   "first_name",             limit: 255, default: ""
-    t.string   "last_name",              limit: 255, default: ""
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
     t.string   "username",               limit: 255
   end
 
