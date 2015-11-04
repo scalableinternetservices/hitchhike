@@ -20,7 +20,12 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id])
       @owner = User.find(@trip.user_id)
       @locations = Location.where("trip_id = #{@trip.id}")
-
+      @trips = Trip.where("user_id = #{current_user.id}")
+      theirTrips = []
+      @trips.each do |trip|
+        theirTrips.push(trip.id.to_s)
+      end
+      theirTrips.push(@trip.id.to_s)
       $recommender.user_trip_recommends.add_set(current_user.id, theirTrips)
       $recommender.process!
       @recommendations = $recommender.for(params[:id])
