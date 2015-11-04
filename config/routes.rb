@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/new'
+
   resources :locations
   root 'homepage#splash'
 
@@ -13,7 +15,12 @@ Rails.application.routes.draw do
 
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
 
-  resources :users, :only => [:show]
+  #resources :users, :only => [:show]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   resources :locations do
     #collection do
@@ -27,6 +34,7 @@ Rails.application.routes.draw do
   end
 
   resources :ratings, only: :update
+  resources :relationships,       only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
