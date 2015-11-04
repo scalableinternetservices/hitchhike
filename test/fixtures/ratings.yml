@@ -2,14 +2,14 @@
 
 one:
   trip_id: 
-  user_id: 
+  user_id:
   score: 1.5
   default: MyString
   0: MyString
 
 two:
-  trip_id: 
-  user_id: 
+  trip_id:
+  user_id:
   score: 1.5
   default: MyString
   0: MyString
