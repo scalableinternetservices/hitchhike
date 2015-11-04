@@ -11,13 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery-ui
-//= require turbolinks
+//= require raty.min.js
 //= require bootstrap-sprockets
 //= require typeahead.bundle
 //= require underscore
 //= require gmaps/google
 //= require gmaps-auto-complete
+//= require turbolinks
 //= require_tree .

@@ -1,5 +1,3 @@
-
-
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
@@ -20,18 +18,16 @@ class TripsController < ApplicationController
   def show
     if user_signed_in?
       @trip = Trip.find(params[:id])
-      @trips = Trip.where("user_id = #{current_user.id}")
-      theirTrips = []
-      @trips.each do |trip|
-        theirTrips.push(trip.id.to_s)
-      end
-      theirTrips.push(@trip.id.to_s)
       @owner = User.find(@trip.user_id)
       @locations = Location.where("trip_id = #{@trip.id}")
 
       $recommender.user_trip_recommends.add_set(current_user.id, theirTrips)
       $recommender.process!
       @recommendations = $recommender.for(params[:id])
+      @rating = Rating.where(trip_id: @trip.id).first
+      unless @rating
+        @rating = Rating.create(trip_id: @trip.id, score: 0)
+      end
     else
       redirect_to new_user_session_path
     end
@@ -39,11 +35,24 @@ class TripsController < ApplicationController
 
   # GET /trips/new
   def new
-    @trip = Trip.new
+    if user_signed_in?
+      @trip = Trip.new
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /trips/1/edit
   def edit
+    if user_signed_in?
+      @trip = Trip.find(params[:id])
+      @owner = User.find(@trip.user_id)
+      if current_user.username != @owner.username
+        redirect_to "/trips"
+      end
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   # POST /trips

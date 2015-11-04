@@ -132,6 +132,29 @@
           });
         }
 
+        $(document).ready(function() {
+
+          $('#star').raty({
+            readOnly: true,
+            score: <%= @trip.average_rating %>,
+            path: '/assets'
+          });
+
+          $('#user_star').raty({
+            score: <%= @rating.score %>,
+            path: '/assets',
+            click: function(score, evt) {
+              $.ajax({
+                url: '/ratings/' + <%= @rating.id %>,
+                type: 'PATCH',
+                data: { score: score }
+              });
+            }
+          });
+
+        });
+
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
             async defer></script>
@@ -166,6 +189,17 @@
       <%= @owner.username %>
     </p>
 
+    <p>
+      <strong>Rating:</strong>
+      <div id="star"></div>
+    </p>
+
+    <p>
+      <strong>Rate this trip!</strong>
+      <div id="user_star"></div>
+    </p>
+
+
     <h2>Comments</h2>
     <div id="comments">
       <%= render :partial => @trip.comments %>
@@ -177,13 +211,13 @@
         </p>
         <p><%= f.submit "Add comment" %></p>
     <% end %>
-    <%= link_to 'Edit', edit_trip_path(@trip) %> |
+    <% if current_user.username == @owner.username %>
+      <%= link_to 'Edit', edit_trip_path(@trip) %> |
+    <% end %>
     <%= link_to 'Back', trips_path %>
     Recommended:
     <%=
     @recommendations.map{|trip| trip.item_id}.join(", ") %>
-
-  <!-- </div> -->
 
 </body>
 </html>

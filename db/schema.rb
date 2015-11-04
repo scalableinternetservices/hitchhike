@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025234940) do
+ActiveRecord::Schema.define(version: 20151103024022) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "trip_id",    limit: 4
@@ -33,13 +33,22 @@ ActiveRecord::Schema.define(version: 20151025234940) do
 
   add_index "locations", ["trip_id"], name: "index_locations_on_trip_id", using: :btree
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "trip_id",    limit: 4
+    t.float    "score",      limit: 24, default: 0.0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "count",      limit: 4,  default: 0
+  end
+
+  add_index "ratings", ["trip_id"], name: "index_ratings_on_trip_id", using: :btree
+
   create_table "trips", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
     t.string   "locations",   limit: 255
     t.string   "tags",        limit: 255
     t.datetime "postdate"
-    t.string   "user",        limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "user_id",     limit: 4
@@ -60,9 +69,9 @@ ActiveRecord::Schema.define(version: 20151025234940) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.string   "first_name",             limit: 255
-    t.string   "last_name",              limit: 255
-    t.string   "username",               limit: 255
+    t.string   "first_name",             limit: 255, default: "", null: false
+    t.string   "last_name",              limit: 255, default: "", null: false
+    t.string   "username",               limit: 255, default: "", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -71,4 +80,5 @@ ActiveRecord::Schema.define(version: 20151025234940) do
 
   add_foreign_key "comments", "trips"
   add_foreign_key "locations", "trips"
+  add_foreign_key "ratings", "trips"
 end
