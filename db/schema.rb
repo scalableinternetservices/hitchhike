@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103024022) do
+ActiveRecord::Schema.define(version: 20151104062408) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "trip_id",    limit: 4
@@ -35,13 +35,14 @@ ActiveRecord::Schema.define(version: 20151103024022) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "trip_id",    limit: 4
+    t.integer  "user_id",    limit: 4
     t.float    "score",      limit: 24, default: 0.0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "count",      limit: 4,  default: 0
   end
 
   add_index "ratings", ["trip_id"], name: "index_ratings_on_trip_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "trips", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -81,4 +82,5 @@ ActiveRecord::Schema.define(version: 20151103024022) do
   add_foreign_key "comments", "trips"
   add_foreign_key "locations", "trips"
   add_foreign_key "ratings", "trips"
+  add_foreign_key "ratings", "users"
 end

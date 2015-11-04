@@ -20,9 +20,10 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id])
       @owner = User.find(@trip.user_id)
       @locations = Location.where("trip_id = #{@trip.id}")
-      @rating = Rating.where(trip_id: @trip.id).first
+      @rating = Rating.where(trip_id: @trip.id, user_id: current_user.id).first
       unless @rating
-        @rating = Rating.create(trip_id: @trip.id, score: 0)
+        @rating = Rating.create(trip_id: @trip.id, user_id: current_user.id, score: nil)
+        #@rating = nil
       end
     else
       redirect_to new_user_session_path

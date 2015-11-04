@@ -141,7 +141,12 @@
           });
 
           $('#user_star').raty({
-            score: <%= @rating.score %>,
+            score:
+              <% if @rating.score == nil %>
+                0
+              <% else %>
+                <%= @rating.score %>
+              <% end %>,
             path: '/assets',
             click: function(score, evt) {
               $.ajax({
@@ -149,6 +154,8 @@
                 type: 'PATCH',
                 data: { score: score }
               });
+
+
             }
           });
 

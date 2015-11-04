@@ -5,11 +5,7 @@ class Trip < ActiveRecord::Base
   belongs_to :user
 
   def average_rating
-    if ratings.size == 0
-      0
-    else
-      ratings.sum(:score) / ratings.size
-    end
+    ratings.where.not(ratings: {score: nil}).sum(:score) / ratings.where.not(ratings: {score: nil}).size
   end
 
 end
