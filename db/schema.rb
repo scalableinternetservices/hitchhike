@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20151104210257) do
 
   add_index "comments", ["trip_id"], name: "index_comments_on_trip_id", using: :btree
 
+
   create_table "locations", force: :cascade do |t|
     t.integer  "trip_id",    limit: 4
     t.text     "lat",        limit: 65535
