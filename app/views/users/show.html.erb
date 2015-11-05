@@ -18,12 +18,41 @@
     <% if @user.nil? %>
       <h1 class="page-header">Invalid User</h1>
     <% else %>
-      <h1 class="page-header"><%= @user.first_name %> <%= @user.last_name %>'s Public Profile</h1>
+      <h1 class="page-header"><%= @user.first_name %> <%= @user.last_name %>'s Profile</h1>
 
       <div class="stats">
             <%= render 'shared/stats' %>
             <%= render 'follow_form' if !@user.nil? %>
       </div>
+
+      <br/><br/>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Locations</th>
+            <th>Tags</th>
+            <th>Postdate</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @trips.each do |trip| %>
+              <tr>
+                <td><%= trip.title %></td>
+                <td><%= trip.description %></td>
+                <td>
+                  <%= trip.locations.map{|loc| loc.name}.join(", ") %>
+                </td>
+                <td><%= trip.tags %></td>
+                <td><%= trip.postdate %></td>
+                <td><%= link_to 'More', trip %></td>
+              </tr>
+          <% end %>
+        </tbody>
+      </table>
 
     <% end %>
 

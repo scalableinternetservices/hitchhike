@@ -1,25 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def new
-    redirect_to sign_up
-  end
-
   def show
-    @user = User.find(params[:id])
-    render action: "index"
-  end
-
-  def create
     if user_signed_in?
-      sign_out(current_user)
-    end
-    redirect_to new_user_session_path
-  end
-
-  def edit
-    if user_signed_in?
-      redirect_to edit
+      # @user = User.find_by(username: params[:username])
+      @user = User.find(params[:id])
+      @trips = Trip.where("user_id = #{@user.id}")
     else
       redirect_to new_user_session_path
     end

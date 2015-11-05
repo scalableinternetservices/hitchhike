@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   root 'homepage#splash'
 
-  get 'users/new'
+  # get 'users/new'
 
-  get 'account/:username' => 'homepage#account'
+  # get 'account/:username' => 'homepage#account'
   get 'explore' => 'homepage#explore'
 
   get 'trips' => 'trips#index'
@@ -12,12 +12,16 @@ Rails.application.routes.draw do
 
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
 
-  #resources :users, :only => [:show]
-  resources :users do
+  resources :users, :only => [:show] do
     member do
       get :following, :followers
     end
   end
+  # resources :users do
+  #   member do
+  #     get :following, :followers
+  #   end
+  # end
 
   resources :locations
 

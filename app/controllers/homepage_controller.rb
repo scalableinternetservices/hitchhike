@@ -5,14 +5,14 @@ class HomepageController < ApplicationController
   end
 
   # GET /account/:username
-  def account
-    if user_signed_in?
-      @user = User.find_by(username: params[:username])
-      @trips = Trip.where("user_id = #{@user.id}")
-    else
-      redirect_to new_user_session_path
-    end
-  end
+  # def account
+  #   if user_signed_in?
+  #     @user = User.find_by(username: params[:username])
+  #     @trips = Trip.where("user_id = #{@user.id}")
+  #   else
+  #     redirect_to new_user_session_path
+  #   end
+  # end
 
   def explore
     @trips = Trip.order(created_at: :desc)
