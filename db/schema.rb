@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20151104210257) do
 
   create_table "comments", force: :cascade do |t|
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151104210257) do
     t.float    "score",      limit: 24, default: 0.0
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "count",      limit: 4,  default: 0
   end
 
   add_index "ratings", ["trip_id"], name: "index_ratings_on_trip_id", using: :btree
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20151104210257) do
     t.string   "locations",   limit: 255
     t.string   "tags",        limit: 255
     t.datetime "postdate"
+    t.string   "user",        limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "user_id",     limit: 4
@@ -82,9 +83,9 @@ ActiveRecord::Schema.define(version: 20151104210257) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.string   "first_name",             limit: 255, default: "", null: false
-    t.string   "last_name",              limit: 255, default: "", null: false
-    t.string   "username",               limit: 255, default: "", null: false
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
+    t.string   "username",               limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -95,5 +96,4 @@ ActiveRecord::Schema.define(version: 20151104210257) do
   add_foreign_key "locations", "trips"
   add_foreign_key "ratings", "trips"
   add_foreign_key "ratings", "users"
-
 end
