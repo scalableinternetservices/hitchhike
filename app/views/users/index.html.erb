@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HitchHike</title>
+
+  <%= stylesheet_link_tag "bootstrap.min" %>
+
+</head>
+
+<body>
+
+  <br/><br/><br/>
+  <div class="container">
+
+    <% if @user.nil? %>
+      <h1 class="page-header">Invalid User</h1>
+    <% else %>
+      <h1 class="page-header"><%= @user.first_name %> <%= @user.last_name %>'s Public Profile</h1>
+
+      <div class="stats">
+            <%= render 'shared/stats' %>
+            <%= render 'follow_form' if !@user.nil? %>
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+  <%= javascript_include_tag "bootstrap.min" %>
+  </body>
+</html>

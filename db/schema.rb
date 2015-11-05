@@ -11,11 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20151104062408) do
-=======
-ActiveRecord::Schema.define(version: 20151103024022) do
->>>>>>> recommend
+
+ActiveRecord::Schema.define(version: 20151104210257) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "trip_id",    limit: 4
@@ -39,7 +36,6 @@ ActiveRecord::Schema.define(version: 20151103024022) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "trip_id",    limit: 4
-<<<<<<< HEAD
     t.integer  "user_id",    limit: 4
     t.float    "score",      limit: 24, default: 0.0
     t.datetime "created_at",                          null: false
@@ -48,15 +44,17 @@ ActiveRecord::Schema.define(version: 20151103024022) do
 
   add_index "ratings", ["trip_id"], name: "index_ratings_on_trip_id", using: :btree
   add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
-=======
-    t.float    "score",      limit: 24, default: 0.0
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "count",      limit: 4,  default: 0
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id", limit: 4
+    t.integer  "followed_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
-  add_index "ratings", ["trip_id"], name: "index_ratings_on_trip_id", using: :btree
->>>>>>> recommend
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "trips", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -96,8 +94,6 @@ ActiveRecord::Schema.define(version: 20151103024022) do
   add_foreign_key "comments", "trips"
   add_foreign_key "locations", "trips"
   add_foreign_key "ratings", "trips"
-<<<<<<< HEAD
   add_foreign_key "ratings", "users"
-=======
->>>>>>> recommend
+
 end
