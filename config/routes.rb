@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'users/new'
-
-  resources :locations
   root 'homepage#splash'
+
+  get 'users/new'
 
   get 'account/:username' => 'homepage#account'
   get 'explore' => 'homepage#explore'
@@ -20,11 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :locations do
-    #collection do
-    #  get :autocomplete
-    #end
-  end
+  resources :locations
 
   resources :trips do
     resources :comments, :only => [:create]
