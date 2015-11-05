@@ -21,6 +21,7 @@ User.create(
   last_name: 'Tai',
   username: 'jeffreytai'
 )
+<<<<<<< HEAD
 ######################   Separate Users   #####################################
 User.create(
   email: 'jakemoghtader@ucla.edu',
@@ -162,3 +163,13 @@ User.create(
   last_name: 'Thompson',
   username: 'OlvThmp00'
 )
+=======
+
+# # Following relationships
+# users = User.all
+# user  = users.first
+# following = users[2..50]
+# followers = users[3..40]
+# following.each { |followed| user.follow(followed) }
+# followers.each { |follower| follower.follow(user) }
+>>>>>>> 293a2a135aa0abc38d3af8da315493a0273b2827

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HitchHike</title>
+
+  <%= stylesheet_link_tag "bootstrap.min" %>
+
+</head>
+
+<body>
+
+  <br/><br/><br/>
+  <div class="container">
+
+    <% provide(:title, @title) %>
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+          <h2><%= @user.username %></h2>
+          <span><%= link_to "view my profile", "/users/#{@user.username}" %></span>
+        </section>
+        <section class="stats">
+          <%= render 'shared/stats' %>
+          <% if @users.any? %>
+              <% @users.each do |user| %>
+                <%= link_to user %>
+              <% end %>
+          <% end %>
+        </section>
+      </aside>
+      <div class="col-md-8">
+        <h3><%= @title %></h3>
+        <% if @users.any? %>
+          <ul class="users follow">
+            <% @users.each do |user| %>
+              <%= link_to user %>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+<%= javascript_include_tag "bootstrap.min" %>
+</body>
+</html>

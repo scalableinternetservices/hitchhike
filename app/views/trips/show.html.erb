@@ -54,6 +54,20 @@
           font-size: 13px;
           font-weight: 300;
       }
+
+      /* removes terms of use, google logo */
+      a[href^="http://maps.google.com/maps"]{display:none !important}
+      a[href^="https://maps.google.com/maps"]{display:none !important}
+
+      .gmnoprint a, .gmnoprint span, .gm-style-cc {
+        display:none;
+      }
+      .gmnoprint div {
+        background:none !important;
+      }
+      #map div div a div img {
+        display:none;
+      }
   </style>
 </head>
 
@@ -71,6 +85,18 @@
             });
 
             setMarkers(map);
+
+            <% @recommendations.first(3).each_with_index do |rec, index| %>
+              var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
+                  center: {lat: <%= Trip.find(rec.item_id).locations.first.lat %>, lng: <%= Trip.find(rec.item_id).locations.first.lng %>},
+                  zoom: 10,
+                  mapTypeControl: false,
+                  disableDefaultUI: true,
+                  scrollwheel: false,
+                  draggable: false,
+                  disableDoubleClickZoom: true
+              });
+            <% end %>
         }
 
         var locations = [];
@@ -141,7 +167,12 @@
           });
 
           $('#user_star').raty({
-            score: <%= @rating.score %>,
+            score:
+              <% if @rating.score == nil %>
+                0
+              <% else %>
+                <%= @rating.score %>
+              <% end %>,
             path: '/assets',
             click: function(score, evt) {
               $.ajax({
@@ -153,7 +184,6 @@
           });
 
         });
-
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
@@ -186,7 +216,7 @@
 
     <p>
       <strong>User:</strong>
-      <%= @owner.username %>
+      <%= link_to @owner.username, "/users/#{@owner.username}" %>
     </p>
 
     <p>
@@ -215,6 +245,33 @@
       <%= link_to 'Edit', edit_trip_path(@trip) %> |
     <% end %>
     <%= link_to 'Back', trips_path %>
+
+    <h2>Recommendations</h2>
+    <% @recommendations.first(3).each_with_index do |rec, index| %>
+    <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
+        <div class="row users-badge-image" id="map<%= index %>">
+        </div>
+
+        <div class="row users-badge-title">
+          <%= Trip.find(rec.item_id).title %>
+        </div>
+
+        <div class="row users-badge-school-subtitle">
+          <% Trip.find(rec.item_id).locations.each do |loc| %>
+              <%= loc.name %><br/>
+          <% end %>
+        </div>
+
+        <div class="row users-badge-subtitle">
+            <%= Trip.find(rec.item_id).postdate %>
+        </div>
+
+        <div class="row users-badge-more-btn">
+          <%= link_to 'More', "/trips/rec.item_id", class: "users-badge-button"%>
+        </div>
+
+    </div>
+    <% end %>
 
 </body>
 </html>

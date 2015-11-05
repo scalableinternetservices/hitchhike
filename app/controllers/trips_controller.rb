@@ -1,18 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
-  # GET /trips
-  # GET /trips.json
-  def index
-    # @trips = Trip.all
-    if user_signed_in?
-      @user = current_user
-      @trips = Trip.where("user_id = #{@user.id}")
-    else
-      redirect_to new_user_session_path
-    end
-  end
-
   # GET /trips/1
   # GET /trips/1.json
   def show
@@ -20,9 +8,19 @@ class TripsController < ApplicationController
       @trip = Trip.find(params[:id])
       @owner = User.find(@trip.user_id)
       @locations = Location.where("trip_id = #{@trip.id}")
-      @rating = Rating.where(trip_id: @trip.id).first
+
+      @trips = Trip.where("user_id = #{current_user.id}")
+      theirTrips = []
+      @trips.each do |trip|
+        theirTrips.push(trip.id.to_s)
+      end
+      theirTrips.push(@trip.id.to_s)
+      $recommender.user_trip_recommends.add_set(current_user.id, theirTrips)
+      $recommender.process!
+      @recommendations = $recommender.for(params[:id])
+      @rating = Rating.where(trip_id: @trip.id, user_id: current_user.id).first
       unless @rating
-        @rating = Rating.create(trip_id: @trip.id, score: 0)
+        @rating = Rating.create(trip_id: @trip.id, user_id: current_user.id, score: nil)
       end
     else
       redirect_to new_user_session_path
