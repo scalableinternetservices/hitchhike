@@ -41,7 +41,7 @@
         <% if @user.username == current_user.username %>
           My
         <% else %>
-          <%= @user.first_name %> <%= @user.last_name %>'s 
+          <%= @user.first_name %> <%= @user.last_name %>'s
         <% end %> Profile
       </h1>
 
@@ -49,8 +49,12 @@
             <%= render 'shared/stats' %>
             <%= render 'follow_form' if !@user.nil? %>
       </div>
+      <br/>
 
-      <br/><br/>
+      <div>
+      <%= button_to 'New Trip', new_trip_path, method: :get, class: 'pull-right' %>
+      </div>
+      <br/>
 
       <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
         <div id="page-container">
