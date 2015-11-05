@@ -1,18 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
 
-  # GET /trips
-  # GET /trips.json
-  def index
-    # @trips = Trip.all
-    if user_signed_in?
-      @user = current_user
-      @trips = Trip.where("user_id = #{@user.id}")
-    else
-      redirect_to new_user_session_path
-    end
-  end
-
   # GET /trips/1
   # GET /trips/1.json
   def show

@@ -2,26 +2,15 @@ Rails.application.routes.draw do
 
   root 'homepage#splash'
 
-  # get 'users/new'
-
-  # get 'account/:username' => 'homepage#account'
-  get 'explore' => 'homepage#explore'
-
-  get 'trips' => 'trips#index'
-  get 'planner' => 'trips#planner'
-
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
 
-  resources :users, :only => [:show] do
-    member do
-      get :following, :followers
-    end
-  end
-  # resources :users do
-  #   member do
-  #     get :following, :followers
-  #   end
-  # end
+  get 'users/:username' => 'users#show'
+  get 'users/:username/following' => 'users#following'
+  get 'users/:username/followers' => 'users#followers'
+
+  get 'explore' => 'homepage#explore'
+
+  get 'planner' => 'trips#planner'
 
   resources :locations
 
