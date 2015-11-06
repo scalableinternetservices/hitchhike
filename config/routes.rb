@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
 
   get 'users/:username' => 'users#show'
-  get 'users/:username/following' => 'users#following'
-  get 'users/:username/followers' => 'users#followers'
+  get 'users/:username/follow' => 'users#follow'
+  # get 'users/:username/following' => 'users#following'
+  # get 'users/:username/followers' => 'users#followers'
 
   get 'explore' => 'homepage#explore'
 
