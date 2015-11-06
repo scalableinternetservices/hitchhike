@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'planner' => 'trips#planner'
 
+  get 'trips' => 'users#show'
+
   resources :locations
 
   resources :trips do
