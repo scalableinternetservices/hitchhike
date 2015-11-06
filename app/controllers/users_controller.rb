@@ -23,18 +23,4 @@ class UsersController < ApplicationController
     end
   end
 
-  # def following
-  #   @title = "Following"
-  #   @user = User.find_by(username: params[:username])
-  #   @users = @user.following
-  #   render 'show_follow'
-  # end
-  #
-  # def followers
-  #   @title = "Followers"
-  #   @user = User.find_by(username: params[:username])
-  #   @users = @user.followers
-  #   render 'show_follow'
-  # end
-
 end

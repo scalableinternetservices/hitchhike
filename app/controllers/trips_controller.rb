@@ -18,7 +18,7 @@ class TripsController < ApplicationController
       $recommender.user_trip_recommends.add_set(current_user.id, theirTrips)
       $recommender.process!
       @recommendations = $recommender.for(params[:id])
-      
+
       @rating = Rating.where(trip_id: @trip.id, user_id: current_user.id).first
       unless @rating
         @rating = Rating.create(trip_id: @trip.id, user_id: current_user.id, score: nil)
@@ -63,6 +63,11 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
+        @followers = Relationship.where(followed_id: current_user.id)
+        @followers.each do |follower|
+          @user = User.find(follower.follower_id)
+          @trip.create_activity :create, owner: current_user, recipient: @user
+        end
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render :show, status: :created, location: @trip }
       else

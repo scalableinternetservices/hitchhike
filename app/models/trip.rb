@@ -1,4 +1,6 @@
 class Trip < ActiveRecord::Base
+  include PublicActivity::Common
+
   has_many :comments, dependent: :destroy
   has_many :locations, dependent: :destroy
   has_many :ratings, dependent: :destroy
