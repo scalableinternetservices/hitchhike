@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  # include PublicActivity::Common
+  include PublicActivity::Common
 
   has_many :trips, dependent: :destroy
   has_many :ratings, dependent: :destroy
@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   # Follows a user.
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
+    self.create_activity :create, owner: self, recipient: other_user
   end
 
   # Unfollows a user.
