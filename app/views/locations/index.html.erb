@@ -48,23 +48,24 @@
             <% next %>
           <% end %>
           <% unique_trips.add(@trip) %>
+          <% unique_trips.each do |trip| %>
           <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
             <div class="row users-badge-image" id="map<%= index %>">
             </div>
             <div class="row users-badge-title">
-              <%= @trip.title %>
+              <%= trip.title %>
             </div>
 
             <div class="row users-badge-school-subtitle">
-              <% @trip.locations.each do |loc| %>
+              <% trip.locations.each do |loc| %>
                   <%= loc.name %><br/>
               <% end %>
             </div>
 
             <div class="row users-badge-subtitle">
-              <%= @trip.postdate %>
+              <%= trip.postdate %>
             </div>
-
+            <% end %>
             <div class="row users-badge-more-btn">
               <%= link_to 'Explore', @trip, class: "users-badge-button" %>
             </div>
