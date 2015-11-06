@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <title>HitchHike</title>
-
-  <%= stylesheet_link_tag "bootstrap.min" %>
 
   <style>
       html, body {
@@ -53,20 +47,6 @@
           font-family: Roboto;
           font-size: 13px;
           font-weight: 300;
-      }
-
-      /* removes terms of use, google logo */
-      a[href^="http://maps.google.com/maps"]{display:none !important}
-      a[href^="https://maps.google.com/maps"]{display:none !important}
-
-      .gmnoprint a, .gmnoprint span, .gm-style-cc {
-        display:none;
-      }
-      .gmnoprint div {
-        background:none !important;
-      }
-      #map div div a div img {
-        display:none;
       }
   </style>
 </head>
@@ -244,7 +224,7 @@
     <% if current_user.username == @owner.username %>
       <%= link_to 'Edit', edit_trip_path(@trip) %> |
     <% end %>
-    <%= link_to 'Back', trips_path %>
+    <%= link_to 'Back', explore_path %>
 
     <h2>Recommendations</h2>
     <% @recommendations.first(3).each_with_index do |rec, index| %>
@@ -267,7 +247,7 @@
         </div>
 
         <div class="row users-badge-more-btn">
-          <%= link_to 'More', "/trips/rec.item_id", class: "users-badge-button"%>
+          <%= link_to 'More', "/trips/#{rec.item_id}", class: "users-badge-button"%>
         </div>
 
     </div>

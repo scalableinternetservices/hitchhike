@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HitchHike</title>
-
-  <%= stylesheet_link_tag "bootstrap.min" %>
-
-  <style>
-    a[href^="http://maps.google.com/maps"]{display:none !important}
-    a[href^="https://maps.google.com/maps"]{display:none !important}
-
-    .gmnoprint a, .gmnoprint span, .gm-style-cc {
-      display:none;
-    }
-    .gmnoprint div {
-      background:none !important;
-    }
-    #map div div a div img {
-      display:none;
-    }
-  </style>
-
 </head>
 
 <body>
@@ -37,7 +15,9 @@
         <div id="page-container">
           <% @trips.each_with_index do |trip, index| %>
               <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-                  <div class="row users-badge-image" id="map<%= index %>">
+                  <div class="row users-badge-image" id="map<%= index %>"></div>
+                  <div class="row users-badge-subtitle">
+                    <span style="float: center;" id="star<%= index %>"></span>
                   </div>
 
                   <div class="row users-badge-title">
@@ -74,7 +54,16 @@
                     disableDoubleClickZoom: true
                 });
               <% end %>
+
             }
+
+            <% @trips.each_with_index do |trip, index| %>
+              $('#star<%= index %>').raty({
+                readOnly: true,
+                score: <%= trip.average_rating %>,
+                path: '/assets'
+              });
+            <% end %>
 
           </script>
 

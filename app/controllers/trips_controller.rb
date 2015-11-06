@@ -18,6 +18,7 @@ class TripsController < ApplicationController
       $recommender.user_trip_recommends.add_set(current_user.id, theirTrips)
       $recommender.process!
       @recommendations = $recommender.for(params[:id])
+      
       @rating = Rating.where(trip_id: @trip.id, user_id: current_user.id).first
       unless @rating
         @rating = Rating.create(trip_id: @trip.id, user_id: current_user.id, score: nil)
