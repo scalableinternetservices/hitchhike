@@ -327,6 +327,120 @@ Rating.create(
   trip_id: Trip.where(title: 'New Orleans').first.id,
   score: 4
 )
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'East Europe',
+  description: 'East European trip starting in Budapest',
+  tags: '#Danube #Hungary',
+  postdate: Time.now,
+  user: User.where(username: 'MG93').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'East Europe').first.id,
+  lat: 47.497912,
+  lng: 19.040235,
+  name: 'Budapest'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'East Europe').first.id,
+  lat: 47.569246,
+  lng: 18.404818,
+  name: 'Tatabanya'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'East Europe').first.id,
+  lat: 47.687457,
+  lng: 17.650397,
+  name: 'Gyor'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'East Europe').first.id,
+  lat: 48.145892,
+  lng: 17.107137,
+  name: 'Bratislava'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'East Europe').first.id,
+  body: "Shouldn't have left Budapest",
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'East Europe').first.id,
+  score: 2
+)
+
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Cape Town',
+  description: 'Cape Town, South Africa and some surrounding areas',
+  tags: '#port #peninsula',
+  postdate: Time.now,
+  user: User.where(username: 'MG93').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Cape Town').first.id,
+  lat: -33.503537,
+  lng: 18.319316,
+  name: 'Grotto Bay'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Cape Town').first.id,
+  lat: -33.924869,
+  lng: 18.424055,
+  name: 'Cape Town'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Cape Town').first.id,
+  lat: -33.932105,
+  lng: 18.860152,
+  name: 'Stellenbosch'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Cape Town').first.id,
+  body: "Grotto Bay was ok but Cape Town is overrated",
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Cape Town').first.id,
+  score: 3
+)
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Prague',
+  description: 'Saw a couple iconic landmarks in Prague',
+  tags: '#CharlesBridge #St.VitusCathedral',
+  postdate: Time.now,
+  user: User.where(username: 'MG93').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Prague').first.id,
+  lat: 50.086477,
+  lng: 14.411437,
+  name: 'Charles Bridge'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Prague').first.id,
+  lat: 50.090892,
+  lng: 14.400511,
+  name: 'St. Vitus Cathedral'
+)
+
+
+Rating.create(
+  trip_id: Trip.where(title: 'Prague').first.id,
+  score: 3
+)
 ######################   Separate Users   #####################################
 User.create(
   email: 'jamessmith@gmail.com',
@@ -543,7 +657,7 @@ User.create(
 ####### Same User/Separate Trips #####
 Trip.create(
   title: 'Bora Bora',
-  description: "Stayed in a luxury resort on the isalnd of Bora Bora",
+  description: "Stayed in a luxury resort on the island of Bora Bora",
   tags: '#scubadiving, #island',
   postdate: Time.now,
   user: User.where(username: 'OlvThmp00').first
@@ -560,6 +674,91 @@ Rating.create(
   trip_id: Trip.where(title: 'Bora Bora').first.id,
   score: 5
 )
+
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Hong Kong',
+  description: 'Theme Parks and Skyscrapers in Hong Kong',
+  tags: '#Disneyland #ThePeak #OceanPark',
+  postdate: Time.now,
+  user: User.where(username: 'OlvThmp00').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Hong Kong').first.id,
+  lat: 22.312967,
+  lng: 114.041282,
+  name: 'Hong Kong Disneyland'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Hong Kong').first.id,
+  lat: 22.263248,
+  lng: 114.158798,
+  name: 'The Peak'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Hong Kong').first.id,
+  lat: 22.246661,
+  lng: 114.175724,
+  name: 'Ocean Park'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Hong Kong').first.id,
+  body: "Giant Pandas at Ocean Park",
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Hong Kong').first.id,
+  body: "Gerat views from The Peak",
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Hong Kong').first.id,
+  score: 5
+)
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Hanoi',
+  description: 'Sightseeing and food in Hanoi',
+  tags: '#OldQuarter #Vietnam',
+  postdate: Time.now,
+  user: User.where(username: 'OlvThmp00').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Hanoi').first.id,
+  lat: 21.032085,
+  lng: 105.847510,
+  name: 'Old Quarter'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Hanoi').first.id,
+  lat: 21.022911,
+  lng: 105.752355,
+  name: 'Hoa Lo Prison'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Hanoi').first.id,
+  lat: 21.036544,
+  lng: 105.834891,
+  name: 'Ho Chi Minh Mausoleum'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Hanoi').first.id,
+  body: "Well worth the visit",
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Hanoi').first.id,
+  score: 2
+)
+
 
 ######################   Separate Users   #####################################
 User.create(
@@ -609,6 +808,30 @@ Rating.create(
   score: 3
 )
 
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Puerto Rico',
+  description: "Went to Puerto Rico to party for awhile",
+  tags: '#IslaVerde #SanJuan',
+  postdate: Time.now,
+  user: User.where(username: 'dougy').first
+)
+
+
+Location.create(
+  trip_id: Trip.where(title: 'Puerto Rico').first.id,
+  lat: 18.466334,
+  lng: -66.105722,
+  name: 'San Juan'
+)
+
+
+Rating.create(
+  trip_id: Trip.where(title: 'Paname').first.id,
+  score: 4
+)
+
+
 ######################   Separate Users   #####################################
 User.create(
   email: 'cjgardner@ucla.edu',
@@ -649,6 +872,128 @@ Rating.create(
   trip_id: Trip.where(title: 'Spain').first.id,
   score: 4
 )
+
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Jerusalem',
+  description: "Visited religious and historic sites in Jerusalem",
+  tags: '#Jerusalem',
+  postdate: Time.now,
+  user: User.where(username: 'cjgardner').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Jerusalem').first.id,
+  lat: 31.776719,
+  lng: 35.234508,
+  name: 'Western Wall'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Jerusalem').first.id,
+  lat: 31.778116,
+  lng: 35.235993,
+  name: 'Temple Mount'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Jerusalem').first.id,
+  lat: 31.778481,
+  lng: 35.229600,
+  name: 'Church of the Holy Sepulchre'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Jerusalem').first.id,
+  body: 'I feel cleansed',
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Jerusalem').first.id,
+  score: 4
+)
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Argentina',
+  description: "Traveled to Buenos Aires and its surrounding areas",
+  tags: '#tango',
+  postdate: Time.now,
+  user: User.where(username: 'cjgardner').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Argentina').first.id,
+  lat: -34.603684,
+  lng: -58.381559,
+  name: 'Buenos Aires'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Argentina').first.id,
+  lat: -34.655861,
+  lng: -58.616721,
+  name: 'Moron'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Argentina').first.id,
+  lat: -34.425087,
+  lng: -58.579658,
+  name: 'Tigre'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Argentina').first.id,
+  body: 'Amazing architecture and restaurants',
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Argentina').first.id,
+  body: 'Too much dancing',
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Argentina').first.id,
+  score: 5
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Argentina').first.id,
+  score: 2
+)
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Moroccooo',
+  description: "Visited two of Morocco's most famous cities",
+  tags: '#architecture #Casablanca',
+  postdate: Time.now,
+  user: User.where(username: 'cjgardner').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Moroccooo').first.id,
+  lat: 31.629472,
+  lng: -7.981084,
+  name: 'Marrakesh'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Moroccooo').first.id,
+  lat: 33.573110,
+  lng: -7.589843,
+  name: 'Casablanca'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Moroccooo').first.id,
+  body: 'The people here are beautiful',
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Moroccooo').first.id,
+  score: 5
+)
+
 ######################   Separate Users   #####################################
 User.create(
   email: 'JRyals@ucla.edu',
@@ -689,6 +1034,32 @@ Rating.create(
   trip_id: Trip.where(title: 'Down Under').first.id,
   score: 2
 )
+
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'The Matterhorn',
+  description: "Climbed The Matterhorn in Zermatt, Switzerland",
+  tags: '#snow #mountain',
+  postdate: Time.now,
+  user: User.where(username: 'joecal22').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'The Matterhorn').first.id,
+  lat: 45.976574,
+  lng: 7.658452,
+  name: 'The Matterhorn'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'The Matterhorn').first.id,
+  body: 'A fairly simple climb; not worth my time',
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'The Matterhorn').first.id,
+  score: 2
+)
 ######################   Separate Users   #####################################
 User.create(
   email: 'MCC@gmail.com',
@@ -700,7 +1071,7 @@ User.create(
 ####### Same User/Separate Trips #####
 Trip.create(
   title: 'Adventures in Rio de Janeiro',
-  description: "Spent a week in Brazils' huge seaside city",
+  description: "Spent a week in Brazil's huge seaside city",
   tags: '#beaches #bossanova',
   postdate: Time.now,
   user: User.where(username: 'macncheese').first
@@ -740,6 +1111,54 @@ Comment.create(
 Rating.create(
   trip_id: Trip.where(title: 'Adventures in Rio de Janeiro').first.id,
   score: 5
+)
+
+####### Same User/Separate Trips #####
+Trip.create(
+  title: 'Relaxing in Ubud',
+  description: "Got a Balinese massage and played with monkeys",
+  tags: '#spa #acupuncture',
+  postdate: Time.now,
+  user: User.where(username: 'macncheese').first
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  lat: -8.519268,
+  lng: 115.263298,
+  name: 'Ubud Village'
+)
+
+Location.create(
+  trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  lat: -8.518751,
+  lng: 115.258597,
+  name: 'Monkey Forest Park'
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  body: "Ubud lives up to it's reputation as one of Asia's top spa destinations",
+)
+
+Comment.create(
+  trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  body: "A Macaque stole my wallet",
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  score: 5
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  score: 1
+)
+
+Rating.create(
+  trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  score: 4
 )
 ######################   Separate Users   #####################################
 User.create(
@@ -805,6 +1224,313 @@ Comment.create(
 Rating.create(
   trip_id: Trip.where(title: 'Slime Round 2').first.id,
   score: 5
+)
+###########  Relationships  ###########################
+Relationship.create(
+  follower_id: 1,
+  followed_id: 2
+)
+
+Relationship.create(
+  follower_id: 1,
+  followed_id: 3
+)
+
+Relationship.create(
+  follower_id: 1,
+  followed_id: 4
+)
+
+Relationship.create(
+  follower_id: 1,
+  followed_id: 15
+)
+
+Relationship.create(
+  follower_id: 2,
+  followed_id: 1
+)
+
+Relationship.create(
+  follower_id: 2,
+  followed_id: 3
+)
+
+
+Relationship.create(
+  follower_id: 2,
+  followed_id: 4
+)
+
+Relationship.create(
+  follower_id: 2,
+  followed_id: 7
+)
+
+Relationship.create(
+  follower_id: 2,
+  followed_id: 10
+)
+
+Relationship.create(
+  follower_id: 2,
+  followed_id: 12
+)
+
+Relationship.create(
+  follower_id: 3,
+  followed_id: 1
+)
+
+Relationship.create(
+  follower_id: 3,
+  followed_id: 2
+)
+
+Relationship.create(
+  follower_id: 3,
+  followed_id: 4
+)
+
+Relationship.create(
+  follower_id: 3,
+  followed_id: 5
+)
+
+Relationship.create(
+  follower_id: 3,
+  followed_id: 8
+)
+
+Relationship.create(
+  follower_id: 3,
+  followed_id: 11
+)
+
+Relationship.create(
+  follower_id: 4,
+  followed_id: 1
+)
+
+Relationship.create(
+  follower_id: 4,
+  followed_id: 2
+)
+
+Relationship.create(
+  follower_id: 4,
+  followed_id: 3
+)
+
+Relationship.create(
+  follower_id: 4,
+  followed_id: 6
+)
+
+Relationship.create(
+  follower_id: 4,
+  followed_id: 12
+)
+
+Relationship.create(
+  follower_id: 5,
+  followed_id: 1
+)
+
+Relationship.create(
+  follower_id: 5,
+  followed_id: 12
+)
+
+Relationship.create(
+  follower_id: 5,
+  followed_id: 15
+)
+
+Relationship.create(
+  follower_id: 6,
+  followed_id: 1
+)
+
+Relationship.create(
+  follower_id: 6,
+  followed_id: 2
+)
+
+Relationship.create(
+  follower_id: 6,
+  followed_id: 3
+)
+
+Relationship.create(
+  follower_id: 6,
+  followed_id: 4
+)
+
+Relationship.create(
+  follower_id: 6,
+  followed_id: 13
+)
+
+Relationship.create(
+  follower_id: 7,
+  followed_id: 5
+)
+
+Relationship.create(
+  follower_id: 7,
+  followed_id: 6
+)
+
+Relationship.create(
+  follower_id: 7,
+  followed_id: 14
+)
+
+Relationship.create(
+  follower_id: 7,
+  followed_id: 15
+)
+
+Relationship.create(
+  follower_id: 8,
+  followed_id: 1
+)
+
+Relationship.create(
+  follower_id: 8,
+  followed_id: 3
+)
+
+
+Relationship.create(
+  follower_id: 9,
+  followed_id: 2
+)
+
+Relationship.create(
+  follower_id: 9,
+  followed_id: 3
+)
+
+Relationship.create(
+  follower_id: 9,
+  followed_id: 4
+)
+
+Relationship.create(
+  follower_id: 9,
+  followed_id: 5
+)
+
+Relationship.create(
+  follower_id: 9,
+  followed_id: 8
+)
+
+Relationship.create(
+  follower_id: 10,
+  followed_id: 5
+)
+
+Relationship.create(
+  follower_id: 10,
+  followed_id: 7
+)
+
+Relationship.create(
+  follower_id: 10,
+  followed_id: 11
+)
+
+Relationship.create(
+  follower_id: 11,
+  followed_id: 2
+)
+
+Relationship.create(
+  follower_id: 11,
+  followed_id: 4
+)
+
+Relationship.create(
+  follower_id: 11,
+  followed_id: 6
+)
+
+Relationship.create(
+  follower_id: 12,
+  followed_id: 2
+)
+
+Relationship.create(
+  follower_id: 12,
+  followed_id: 8
+)
+
+Relationship.create(
+  follower_id: 12,
+  followed_id: 11
+)
+
+Relationship.create(
+  follower_id: 12,
+  followed_id: 13
+)
+
+Relationship.create(
+  follower_id: 12,
+  followed_id: 14
+)
+
+Relationship.create(
+  follower_id: 13,
+  followed_id: 3
+)
+
+Relationship.create(
+  follower_id: 13,
+  followed_id: 5
+)
+
+Relationship.create(
+  follower_id: 13,
+  followed_id: 7
+)
+
+Relationship.create(
+  follower_id: 13,
+  followed_id: 9
+)
+
+Relationship.create(
+  follower_id: 14,
+  followed_id: 6
+)
+
+Relationship.create(
+  follower_id: 14,
+  followed_id: 8
+)
+
+Relationship.create(
+  follower_id: 14,
+  followed_id: 10
+)
+
+Relationship.create(
+  follower_id: 14,
+  followed_id: 12
+)
+
+Relationship.create(
+  follower_id: 14,
+  followed_id: 15
+)
+
+Relationship.create(
+  follower_id: 15,
+  followed_id: 1
 )
 
 
