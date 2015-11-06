@@ -729,7 +729,7 @@ Comment.create(
 
 Comment.create(
   trip_id: Trip.where(title: 'Hong Kong').first.id,
-  body: "Gerat views from The Peak",
+  body: "Great views from The Peak",
 )
 
 Rating.create(
