@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  validates :content, length: { maximum: 1000 },
-                      presence: true
+  # validates :content, length: { maximum: 1000 },
+  #                     presence: true
   def create
     @trip = Trip.find(params[:trip_id])
     @comment = @trip.comments.create!(comment_params)
