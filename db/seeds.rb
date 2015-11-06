@@ -50,6 +50,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Yellowstone').first.id,
+  user_id: User.where(username: 'briancc23').first.id,
   score: 4
 )
 
@@ -102,6 +103,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'China').first.id,
+  user_id: User.where(username: 'briancc23').first.id,
   score: 3
 )
 ######################   Separate Users   #####################################
@@ -142,6 +144,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Vegas').first.id,
+  user_id: User.where(username: 'jeffreytai').first.id,
   score: 4
 )
 ######################   Separate Users   #####################################
@@ -189,6 +192,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'New York').first.id,
+  user_id: User.where(username: 'jakeM').first.id,
   score: 5
 )
 ######################   Separate Users   #####################################
@@ -229,6 +233,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Massachusetts').first.id,
+  user_id: User.where(username: 'GabbyYang').first.id,
   score: 3
 )
 ####### Same User/Separate Trips #####
@@ -273,6 +278,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Tour of England').first.id,
+  user_id: User.where(username: 'GabbyYang').first.id,
   score: 5
 )
 ######################   Separate Users   #####################################
@@ -325,6 +331,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'New Orleans').first.id,
+  user_id: User.where(username: 'MG93').first.id,
   score: 4
 )
 ####### Same User/Separate Trips #####
@@ -371,6 +378,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'East Europe').first.id,
+  user_id: User.where(username: 'MG93').first.id,
   score: 2
 )
 
@@ -411,6 +419,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Cape Town').first.id,
+  user_id: User.where(username: 'MG93').first.id,
   score: 3
 )
 ####### Same User/Separate Trips #####
@@ -439,6 +448,7 @@ Location.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Prague').first.id,
+  user_id: User.where(username: 'MG93').first.id,
   score: 3
 )
 ######################   Separate Users   #####################################
@@ -474,11 +484,13 @@ Location.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Arizona Trip').first.id,
+  user_id: User.where(username: 'JSmith').first.id,
   score: 5
 )
 
 Rating.create(
   trip_id: Trip.where(title: 'Arizona Trip').first.id,
+  user_id: User.where(username: 'briancc23').first.id,
   score: 4
 )
 ######################   Separate Users   #####################################
@@ -495,7 +507,7 @@ Trip.create(
   description: 'Saw the northern lights from Anchorage then camped out by Denali National Park',
   tags: '#auroraborealis',
   postdate: Time.now,
-  user: User.where(username: 'LovestoTravel').first
+  user: User.where(username: 'LovesToTravel').first
 )
 
 Location.create(
@@ -519,6 +531,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Alaskan Camping').first.id,
+  user_id: User.where(username: 'LovesToTravel').first.id,
   score: 3
 )
 ######################   Separate Users   #####################################
@@ -559,6 +572,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Northern Pacific').first.id,
+  user_id: User.where(username: 'Mr. L').first.id,
   score: 1
 )
 ######################   Separate Users   #####################################
@@ -606,6 +620,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Pacific Trip').first.id,
+  user_id: User.where(username: 'account456').first.id,
   score: 2
 )
 ####### Same User/Separate Trips #####
@@ -643,6 +658,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Hawaii').first.id,
+  user_id: User.where(username: 'account456').first.id,
   score: 5
 )
 
@@ -672,6 +688,7 @@ Location.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Bora Bora').first.id,
+  user_id: User.where(username: 'OlvThmp00').first.id,
   score: 5
 )
 
@@ -717,6 +734,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Hong Kong').first.id,
+  user_id: User.where(username: 'OlvThmp00').first.id,
   score: 5
 )
 ####### Same User/Separate Trips #####
@@ -756,6 +774,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Hanoi').first.id,
+  user_id: User.where(username: 'OlvThmp00').first.id,
   score: 2
 )
 
@@ -805,6 +824,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Paname').first.id,
+  user_id: User.where(username: 'dougy').first.id,
   score: 3
 )
 
@@ -827,7 +847,8 @@ Location.create(
 
 
 Rating.create(
-  trip_id: Trip.where(title: 'Paname').first.id,
+  trip_id: Trip.where(title: 'Puerto Rico').first.id,
+  user_id: User.where(username: 'dougy').first.id,
   score: 4
 )
 
@@ -870,6 +891,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Spain').first.id,
+  user_id: User.where(username: 'cjgardner').first.id,
   score: 4
 )
 
@@ -910,6 +932,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Jerusalem').first.id,
+  user_id: User.where(username: 'cjgardner').first.id,
   score: 4
 )
 ####### Same User/Separate Trips #####
@@ -954,11 +977,13 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Argentina').first.id,
+  user_id: User.where(username: 'cjgardner').first.id,
   score: 5
 )
 
 Rating.create(
   trip_id: Trip.where(title: 'Argentina').first.id,
+  user_id: User.where(username: 'jakeM').first.id,
   score: 2
 )
 ####### Same User/Separate Trips #####
@@ -991,6 +1016,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Moroccooo').first.id,
+  user_id: User.where(username: 'cjgardner').first.id,
   score: 5
 )
 
@@ -1032,6 +1058,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Down Under').first.id,
+  user_id: User.where(username: 'joecal22').first.id,
   score: 2
 )
 
@@ -1058,6 +1085,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'The Matterhorn').first.id,
+  user_id: User.where(username: 'joecal22').first.id,
   score: 2
 )
 ######################   Separate Users   #####################################
@@ -1110,6 +1138,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Adventures in Rio de Janeiro').first.id,
+  user_id: User.where(username: 'macncheese').first.id,
   score: 5
 )
 
@@ -1148,16 +1177,19 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  user_id: User.where(username: 'macncheese').first.id,
   score: 5
 )
 
 Rating.create(
   trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  user_id: User.where(username: 'JSmith').first.id,
   score: 1
 )
 
 Rating.create(
   trip_id: Trip.where(title: 'Relaxing in Ubud').first.id,
+  user_id: User.where(username: 'jeffreytai').first.id,
   score: 4
 )
 ######################   Separate Users   #####################################
@@ -1191,6 +1223,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Slime').first.id,
+  user_id: User.where(username: 'slime').first.id,
   score: 5
 )
 ####### Same User/Separate Trips #####
@@ -1223,6 +1256,7 @@ Comment.create(
 
 Rating.create(
   trip_id: Trip.where(title: 'Slime Round 2').first.id,
+  user_id: User.where(username: 'slime').first.id,
   score: 5
 )
 ###########  Relationships  ###########################
