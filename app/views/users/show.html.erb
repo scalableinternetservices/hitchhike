@@ -60,10 +60,10 @@
         <div id="page-container">
           <% @trips.each_with_index do |trip, index| %>
               <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-                <div class="row users-badge-image" id="map<%= index %>">
-                </div>
+                <div class="row users-badge-image" id="map<%= index %>"></div>
                 <div class="row users-badge-subtitle">
                   <span style="float: left;"><%= link_to 'Edit', edit_trip_path(trip) %></span>
+                  <span style="float: center;" id="star<%= index %>"></span>
                   <span style="float: right;"><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></span>
                 </div>
 
@@ -102,6 +102,15 @@
                   });
                   <% end %>
               }
+
+              // Loads rating for trips
+              <% @trips.each_with_index do |trip, index| %>
+              $('#star<%= index %>').raty({
+                readOnly: true,
+                score: <%= trip.average_rating %>,
+                path: '/assets'
+              });
+              <% end %>
 
           </script>
 
