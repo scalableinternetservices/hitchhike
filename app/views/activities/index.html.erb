@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+
+  <br/><br/><br/>
+  <div class="container">
+
+    <h1 class="page-header">NewsFeed</h1>
+
+    <br/>
+
+    <% @activities.each do |activity| %>
+      <% @username = User.find(activity.owner_id).username %>
+      <% if activity.trackable_type == 'Trip' %>
+        <%= link_to @username, "/users/#{@username}" %> created a new <%= link_to "trip!", "/trips/#{activity.trackable_id}" %>
+      <% end %>
+    <% end %>
+
+  </div>
+
+</body>
+</html>

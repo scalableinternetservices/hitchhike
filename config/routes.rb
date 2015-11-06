@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'activities/index'
+
   root 'homepage#splash'
 
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
 
   get 'users/:username' => 'users#show'
   get 'users/:username/follow' => 'users#follow'
-  # get 'users/:username/following' => 'users#following'
-  # get 'users/:username/followers' => 'users#followers'
 
+  get 'newsfeed' => 'activities#index'
   get 'explore' => 'homepage#explore'
-
-  get 'planner' => 'trips#planner'
 
   get 'trips' => 'users#show'
 

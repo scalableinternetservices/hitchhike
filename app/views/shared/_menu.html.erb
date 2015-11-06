@@ -16,6 +16,7 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "Explore", explore_path %></li>
             <% if user_signed_in? %>
+            <li><%= link_to "Newsfeed", newsfeed_path %></li>
             <li>
               <%= form_tag locations_path, method: :get do %>
                 <div class="master-search">
