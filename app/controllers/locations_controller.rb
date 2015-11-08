@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
     if user_signed_in?
       if params[:query].present?
         @locations = Location.search(params[:query])
-        #@locations = Location.all
+        @trips = Trip.all
       else
         @locations = []
       end

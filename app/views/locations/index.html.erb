@@ -14,31 +14,32 @@
 
   <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
     <div id="page-container">
-      <% unique_trips = Set.new %>
-      <% @locations.each do |location, index| %>
+      <% unique_trips = Hash.new %>
+      <% @locations.each do |location| %>
           <% @trip = Trip.find_by(id: location.trip_id) %>
           <% if unique_trips.include?(@trip) %>
             <% next %>
           <% end %>
-          <% unique_trips.add(@trip) %>
-          <% unique_trips.each do |trip| %>
+          <% unique_trips[@trip] = @trips.index(@trip) %>
+      <% end %>
+      <% unique_trips.each do |utrip, uindex| %>
           <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-            <div class="row users-badge-image" id="map<%= index %>">
+            <div class="row users-badge-image" id="map<%= uindex %>">
             </div>
             <div class="row users-badge-title">
-              <%= trip.title %>
+              <%= utrip.title %>
             </div>
 
             <div class="row users-badge-school-subtitle">
-              <% trip.locations.each do |loc| %>
+              <% utrip.locations.each do |loc| %>
                   <%= loc.name %><br/>
               <% end %>
             </div>
 
             <div class="row users-badge-subtitle">
-              <%= trip.postdate %>
+              <%= utrip.postdate %>
             </div>
-            <% end %>
+
             <div class="row users-badge-more-btn">
               <%= link_to 'Explore', @trip, class: "users-badge-button" %>
             </div>
@@ -54,8 +55,9 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script>
     function initMap() {
-        <% @locations.each do |location, index| %>
+        <% @locations.each do |location| %>
         <% @trip = Trip.find_by(id: location.trip_id) %>
+        <% index = @trips.index(@trip) %>
         var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
             center: {lat: <%= @trip.locations.first.lat %>, lng: <%= @trip.locations.first.lng %>},
             zoom: 10,
