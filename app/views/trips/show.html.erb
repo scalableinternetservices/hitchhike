@@ -219,7 +219,7 @@
     <%= form_for [@trip, Comment.new] do |f| %>
         <p>
           <%= f.label :body, "New comment" %><br/>
-          <%= f.text_area :body %>
+          <%= f.text_area :body, required: true %>
         </p>
         <p><%= f.submit "Add comment" %></p>
     <% end %>
