@@ -13,4 +13,5 @@ class HomepageController < ApplicationController
 
   def sign_up
   end
+
 end

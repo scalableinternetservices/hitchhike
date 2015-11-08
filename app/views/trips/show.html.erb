@@ -229,30 +229,34 @@
     <%= link_to 'Back', explore_path %>
 
     <h2>Recommendations</h2>
-    <% @recommendations.first(3).each_with_index do |rec, index| %>
-    <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-        <div class="row users-badge-image" id="map<%= index %>">
-        </div>
+    <% if @recommendations.size == 0 %>
+      <h4>No recommendations available</h4>
+    <% else %>
+      <% @recommendations.first(3).each_with_index do |rec, index| %>
+      <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
+          <div class="row users-badge-image" id="map<%= index %>">
+          </div>
 
-        <div class="row users-badge-title">
-          <%= Trip.find(rec.item_id).title %>
-        </div>
+          <div class="row users-badge-title">
+            <%= Trip.find(rec.item_id).title %>
+          </div>
 
-        <div class="row users-badge-school-subtitle">
-          <% Trip.find(rec.item_id).locations.each do |loc| %>
-              <%= loc.name %><br/>
-          <% end %>
-        </div>
+          <div class="row users-badge-school-subtitle">
+            <% Trip.find(rec.item_id).locations.each do |loc| %>
+                <%= loc.name %><br/>
+            <% end %>
+          </div>
 
-        <div class="row users-badge-subtitle">
-            <%= Trip.find(rec.item_id).postdate %>
-        </div>
+          <div class="row users-badge-subtitle">
+              <%= Trip.find(rec.item_id).postdate %>
+          </div>
 
-        <div class="row users-badge-more-btn">
-          <%= link_to 'More', "/trips/#{rec.item_id}", class: "users-badge-button"%>
-        </div>
+          <div class="row users-badge-more-btn">
+            <%= link_to 'More', "/trips/#{rec.item_id}", class: "users-badge-button"%>
+          </div>
 
-    </div>
+      </div>
+      <% end %>
     <% end %>
 
 </body>

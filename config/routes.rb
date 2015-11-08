@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'activities/index'
-
   root 'homepage#splash'
 
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
