@@ -21,5 +21,5 @@ Rails.application.routes.draw do
 
   resources :ratings, only: :update
   resources :relationships,       only: [:create, :destroy]
-
+  get 'nearby' => 'locations#nearby'
 end
