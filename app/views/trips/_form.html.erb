@@ -86,12 +86,19 @@
             }
           });
 
+          $("#ClearLocation").click(function(){
+            var num = parseInt( list.prop("id").match(/\d+/g), 10 );
+            var cities = document.getElementsByClassName('city');
+            cities[num].value = "";
+          });
+
       });
     </script>
     <div id="inputList">
       <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
       <div id="listFields1">
         <input class="city"   readonly/>
+        <input type="button" value="Clear" id="ClearLocation" />
         <input class="cityLat" type="hidden"  />
         <input class="cityLng"  type="hidden" />
       </div>
