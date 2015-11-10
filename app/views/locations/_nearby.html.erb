@@ -34,36 +34,35 @@
   <% else %>
       <h2>Nothing nearby!</h2>
   <% end %>
-    </div>
-</div>
+    <script>
+        function initMap() {
+            <% @trips.each_with_index do |trip, index| %>
+            var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
+                center: {lat: <%= trip.locations.first.lat %>, lng: <%= trip.locations.first.lng %>},
+                zoom: 10,
+                mapTypeControl: false,
+                disableDefaultUI: true,
+                scrollwheel: false,
+                draggable: false,
+                disableDoubleClickZoom: true
+            });
+            <% end %>
 
-<script>
-    function initMap() {
+        }
+
         <% @trips.each_with_index do |trip, index| %>
-        var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
-            center: {lat: <%= trip.locations.first.lat %>, lng: <%= trip.locations.first.lng %>},
-            zoom: 10,
-            mapTypeControl: false,
-            disableDefaultUI: true,
-            scrollwheel: false,
-            draggable: false,
-            disableDoubleClickZoom: true
+        $('#star<%= index %>').raty({
+            readOnly: true,
+            score: <%= trip.average_rating %>,
+            path: '/assets'
         });
         <% end %>
 
-    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
+            async defer></script>
+    <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+    <%= javascript_include_tag "bootstrap.min" %>
 
-    <% @trips.each_with_index do |trip, index| %>
-    $('#star<%= index %>').raty({
-        readOnly: true,
-        score: <%= trip.average_rating %>,
-        path: '/assets'
-    });
-    <% end %>
+    </div>
 
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
-        async defer></script>
-<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
-<%= javascript_include_tag "bootstrap.min" %>
