@@ -1,0 +1,65 @@
+<div id="nearby-partial">
+  <% if @trips.length > 0 %>
+        <h1 class="page-header">Nearby</h1>
+          <div id="page-container">
+            <% @trips.each_with_index do |trip, index| %>
+                <div class="slide col-sm-5 col-centered col-sm-offset-1 users-badge-master">
+                  <div class="row users-badge-image" id="map<%= index %>"></div>
+                  <div class="row users-badge-subtitle">
+                    <span style="float: center;" id="star<%= index %>"></span>
+                  </div>
+
+                  <div class="row users-badge-title">
+                    <%= trip.title %>
+                  </div>
+
+                  <div class="row users-badge-school-subtitle">
+                    <% trip.locations.each do |loc| %>
+                        <%= loc.name %><br/>
+                    <% end %>
+                  </div>
+
+                  <div class="row users-badge-subtitle">
+                    <%= trip.postdate %>
+                  </div>
+
+                  <div class="row users-badge-more-btn">
+                    <%= link_to 'More', trip, class: "users-badge-button" %>
+                  </div>
+                </div>
+            <% end %>
+            </div>
+      </div>
+  <% else %>
+      <h2>Nothing nearby!</h2>
+  <% end %>
+</div>
+
+<script>
+    function initMap() {
+        <% @trips.each_with_index do |trip, index| %>
+        var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
+            center: {lat: <%= trip.locations.first.lat %>, lng: <%= trip.locations.first.lng %>},
+            zoom: 10,
+            mapTypeControl: false,
+            disableDefaultUI: true,
+            scrollwheel: false,
+            draggable: false,
+            disableDoubleClickZoom: true
+        });
+        <% end %>
+
+    }
+
+    <% @trips.each_with_index do |trip, index| %>
+    $('#star<%= index %>').raty({
+        readOnly: true,
+        score: <%= trip.average_rating %>,
+        path: '/assets'
+    });
+    <% end %>
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
+        async defer></script>

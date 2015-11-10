@@ -19,29 +19,26 @@ class LocationsController < ApplicationController
     @location = Location.new(params)
   end
 
-  def nearby
-    if params.permit(:lat, :long)
+  def _nearby
+    if params.permit(:lat, :lng) && params[:lat] != nil && params[:lng] != nil
       @cmp = []
       Location.find_each(:batch_size => 5000) do |location|
-        d = distance [location.lat.to_s.to_f, location.lng.to_s.to_f], [:lat.to_s.to_f, :long.to_s.to_f]
-        if d < 25000
-          @cmp.push([location.trip_id, d])
-        end
+        d = GeoDistance::Haversine.geo_distance(location.lat.to_s.to_f, location.lng.to_s.to_f, params[:lat].to_s.to_f, params[:lng].to_s.to_f ).to_meters
+        @cmp.push([location.trip_id, d])
       end
-      @cmp.sort! {|a,b| a[1] <=> b[1]}
+      @cmp = @cmp.sort! {|a,b| a[1] <=> b[1]}
       @trips = []
-      @cmp.each() do |trip|
-        if !@trips.include?(trip[0])
-          @trips.push(Trip.find_by(trip[0]))
+      @cmp.each { |trip|
+        if @trips.length < 12 && !@trips.include?(Trip.find_by_id(trip[0]))
+          @trips.push(Trip.find_by_id(trip[0]))
         end
-      end
+      }
     else
-      @trips = []
-      @trips.push(Trip.find_by(1))
+      @trips = [];
     end
   end
 
-  def distance loc1, loc2
+  def distance(loc1, loc2)
     rad_per_deg = Math::PI/180  # PI / 180
     rkm = 6371                  # Earth radius in kilometers
     rm = rkm * 1000             # Radius in meters
@@ -55,7 +52,7 @@ class LocationsController < ApplicationController
     a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
     c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
 
-    rm * c # Delta in meters
+    rkm * c # Delta in meters
   end
 
   #def autocomplete
