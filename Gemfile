@@ -75,7 +75,7 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'sprockets-rails'
-
+gem "geo-distance", "~> 0.2.0"
 gem 'gmaps-autocomplete-rails'
 #gem 'searchkick'
 #gem 'kaminari'
