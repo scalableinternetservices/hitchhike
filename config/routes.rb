@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'activities/index'
-
   root 'homepage#splash'
 
   devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login" }
@@ -23,5 +21,6 @@ Rails.application.routes.draw do
 
   resources :ratings, only: :update
   resources :relationships,       only: [:create, :destroy]
-
+  get 'nearby' => 'locations#_nearby'
+  get 'nearby' => 'locations#_nearby'
 end

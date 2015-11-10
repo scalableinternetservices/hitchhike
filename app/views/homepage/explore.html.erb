@@ -70,8 +70,12 @@
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
               async defer></script>
         </div>
+        <div id="nearby-partial">
+        </div>
       </div>
+
   </div>
+
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -79,5 +83,21 @@
 
 <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
 <%= javascript_include_tag "bootstrap.min" %>
+  <script>
+      $(document).ready(
+              function() {
+                  console.log("Loaded");
+                  if (navigator.geolocation) {
+                      navigator.geolocation.getCurrentPosition(showPosition);
+                  } else {
+                      $('#nearby-partial').innerHTML = "FAIL!";
+                      console.log("FAIL!");
+                  }
+                  function showPosition(position) {
+                      $('#nearby-partial').load('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude +" #nearby-partial");
+                      console.log('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude);
+                  }
+              });
+  </script>
 </body>
 </html>
