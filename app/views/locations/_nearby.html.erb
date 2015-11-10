@@ -1,4 +1,5 @@
 <div id="nearby-partial">
+  <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
   <% if @trips.length > 0 %>
         <h1 class="page-header">Nearby</h1>
           <div id="page-container">
@@ -33,6 +34,7 @@
   <% else %>
       <h2>Nothing nearby!</h2>
   <% end %>
+    </div>
 </div>
 
 <script>
@@ -63,3 +65,5 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
         async defer></script>
+<%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
+<%= javascript_include_tag "bootstrap.min" %>
