@@ -39,33 +39,62 @@
       <% end %>
     </ul>
     <script type="text/javascript">
-      var row = 0;
+      var row = -1;
       var locs = [];
+
       function initialize() {
           var input = document.getElementById('searchTextField');
           var autocomplete = new google.maps.places.Autocomplete(input);
           google.maps.event.addListener(autocomplete, 'place_changed', function () {
               var place = autocomplete.getPlace();
+              document.getElementById("addLocation").click();
 
 
               document.getElementsByClassName('city')[row].value = place.name;
               //document.getElementsByClassName('city')[row].setAttribute('readonly', 'readonly');
-              document.getElementsByClassName('cityLat')[row].value = place.geometry.location.lat();
-              document.getElementsByClassName('cityLng')[row].value = place.geometry.location.lng();
+              //document.getElementsByClassName('cityLat')[row].value = place.geometry.location.lat();
+              //document.getElementsByClassName('cityLng')[row].value = place.geometry.location.lng();
               locs.push({'lat': place.geometry.location.lat(), 'lng': place.geometry.location.lng(), 'name': place.name})
               document.getElementById('locs').value = JSON.stringify(locs);
+              //var searchBox = document.getElementById("searchTextField");
+              //searchBox.setAttribute("autocomplete","off");
+
           });
       }
       google.maps.event.addDomListener(window, 'load', initialize);
       $(document).ready(function(){
+        document.getElementById('addLocation').style.visibility='hidden';
           // google.maps.event.addDomListener(window, 'load', initialize);
           $("#addLocation").click(function(){
+
+            var intId = $("#inputList div").length + 1;
+            var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
+            var city = $("<input type=\"text\" class=\"city\" id=\"city" + intId + "\"readonly />");
+            row++;
+            var removeButton = $("<input type=\"button\"  class=\"remove\" value=\"Remove\" id=\"rem" + intId + "\" />");
+            removeButton.click(function() {
+                $(this).parent().remove();
+                row--;
+                searchBox.value = "";
+                var index = locs.indexOf(city.value);   //city.value is always the most recent city right now
+                                                        //want it to have value of city name next to remove button
+                locs.splice(index,1);
+                document.getElementById('locs').value = JSON.stringify(locs);
+            });
+            fieldWrapper.append(city);
+
+            fieldWrapper.append(removeButton);
+            $("#inputList").append(fieldWrapper);
+            /*
             row++;
             var list = $('div[id^="listFields1"]:last');
             var num = parseInt( list.prop("id").match(/\d+/g), 10 ) +1;
-            var newList = list.clone().prop('id', 'listFields'+num ).appendTo( "#inputList" );;
+            var newList = list.clone().prop('id', 'listFields'+num ).appendTo( "#inputList" );;*/
             var searchBox = document.getElementById("searchTextField");
+            searchBox.setAttribute('type','text');
+            searchBox.setAttribute("autocomplete","on");
             searchBox.value = "";
+            /*
             var cities = document.getElementsByClassName('city');
             for (var ii=row; ii < cities.length; ii++) {
               if (cities[ii].type == "text") {
@@ -84,24 +113,19 @@
                 Lngs[ii].value = "";
               }
             }
-          });
-
-          $("#ClearLocation").click(function(){
-            var num = parseInt( list.prop("id").match(/\d+/g), 10 );
-            var cities = document.getElementsByClassName('city');
-            cities[num].value = "";
+            */
           });
 
       });
     </script>
     <div id="inputList">
-      <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
-      <div id="listFields1">
+      <input id="searchTextField" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
+      <!--<div id="listFields1">
         <input class="city"   readonly/>
-        <input type="button" value="Clear" id="ClearLocation" />
+        <input type="button" value="Remove" class="RemoveLocation" />
         <input class="cityLat" type="hidden"  />
         <input class="cityLng"  type="hidden" />
-      </div>
+      </div> -->
     </div>
 
     <input type="button" value="Add New Location" id="addLocation" />
