@@ -9,7 +9,7 @@
 </style>
 </head>
 
-<%= form_for(@trip) do |f| %>
+<%= form_for(@trip, html: { id: 'newtrip' }) do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
@@ -77,7 +77,7 @@
                 row--;
                 searchBox.value = "";
                 var index = locs.indexOf(city.value);   //city.value is always the most recent city right now
-                                                        //want it to have value of city name next to remove button
+                                                        //want it to have value of city name next to specific remove button
                 locs.splice(index,1);
                 document.getElementById('locs').value = JSON.stringify(locs);
             });
@@ -115,7 +115,14 @@
             }
             */
           });
+      });
 
+      $('#newtrip').on('keyup keypress', function(e) {
+        var code = e.keyCode || e.which;
+        if (code == 13) {
+          e.preventDefault();
+          return false;
+        }
       });
     </script>
     <div id="inputList">
