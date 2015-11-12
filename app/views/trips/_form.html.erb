@@ -73,11 +73,13 @@
             row++;
             var removeButton = $("<input type=\"button\"  class=\"remove\" value=\"Remove\" id=\"rem" + intId + "\" />");
             removeButton.click(function() {
+                //var pid = $(this).parent().attr('id');
+                var pid = parseInt( $(this).parent().attr('id').match(/\d+/g), 10 );
                 $(this).parent().remove();
                 row--;
                 searchBox.value = "";
-                var index = locs.indexOf(city.value);   //city.value is always the most recent city right now
-                                                        //want it to have value of city name next to specific remove button
+                var index = locs.indexOf($("#city"+pid).value);   //city.value is always the most recent city right now
+                                                        //want it to have value of city name next to remove button
                 locs.splice(index,1);
                 document.getElementById('locs').value = JSON.stringify(locs);
             });
