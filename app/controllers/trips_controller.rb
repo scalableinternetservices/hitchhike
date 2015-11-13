@@ -42,9 +42,6 @@ class TripsController < ApplicationController
     if user_signed_in?
       @trip = Trip.find(params[:id])
       @owner = User.find(@trip.user_id)
-      if current_user.username != @owner.username
-        redirect_to "/trips"
-      end
     else
       redirect_to new_user_session_path
     end
@@ -94,9 +91,10 @@ class TripsController < ApplicationController
   # DELETE /trips/1
   # DELETE /trips/1.json
   def destroy
+    @owner = User.find(@trip.user_id)
     @trip.destroy
     respond_to do |format|
-      format.html { redirect_to trips_url, notice: 'Trip was successfully destroyed.' }
+      format.html { redirect_to "/users/#{@owner.username}", notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
