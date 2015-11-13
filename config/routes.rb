@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'trips' => 'users#show'
 
   get 'nearby' => 'locations#_nearby'
-  # get 'nearby' => 'locations#_nearby'
 
   resources :locations
 
