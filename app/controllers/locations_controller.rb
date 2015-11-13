@@ -33,8 +33,9 @@ class LocationsController < ApplicationController
           @trips.push(Trip.find_by_id(trip[0]))
         end
       }
+      @trips = @trips.first(6)
     else
-      @trips = [];
+      @trips = []
     end
   end
 

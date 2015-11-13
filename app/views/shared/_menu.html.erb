@@ -20,13 +20,13 @@
             <li>
               <%= form_tag locations_path, method: :get do %>
                 <div class="master-search">
-                  <!-- <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: 'locations-search', autocomplete: 'off', placeholder: 'Find a destination' %> -->
-                  <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: 'locations-search', placeholder: 'Find a destination' %>
+                  <input type="text" name="query" id="locations-search" class="form-control typeahead" placeholder="Find a destination" />
+                  <!-- <%= text_field_tag :query, params[:query], class: 'form-control typeahead', id: 'locations-search', placeholder: 'Find a destination' %> -->
                 </div>
             </li>
             <li>
                 <div class="search-button">
-                  <%= submit_tag '', class: 'btn btn-primary glyphicon glyphicon-search' %>
+                  <%= submit_tag '', class: 'glyphicon glyphicon-search btn' %>
                 </div>
               <% end %>
             </li>
@@ -49,3 +49,5 @@
 
   </div>
 </div>
+
+<%= javascript_include_tag "bootstrap.min" %>
