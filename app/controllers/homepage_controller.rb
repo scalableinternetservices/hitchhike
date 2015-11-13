@@ -5,7 +5,7 @@ class HomepageController < ApplicationController
   end
 
   def explore
-    @trips = Trip.order(created_at: :desc).first(9)
+    @trips = Trip.order(created_at: :desc).limit(6)
   end
 
   def sign_in

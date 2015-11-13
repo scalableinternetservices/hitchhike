@@ -12,7 +12,6 @@
     <server host="ec2-54-148-61-114.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
-
   <load>
     <arrivalphase phase="1" duration="30" unit="second">
       <users arrivalrate="1" unit="second"></users>
@@ -98,7 +97,7 @@
           url='/users/register'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%%3D%3D&amp;user%5Bfirst_name%5D=Test&amp;user%5Blast_name%5D=User&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bemail%5D=%%_random_username%%%40ucla.edu&amp;user%5Bpassword%5D=password1&amp;user%5Bpassword_confirmation%5D=password1&amp;commit=Sign+up'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%%3D%3D&amp;user%5Bfirst_name%5D=Test&amp;user%5Blast_name%5D=User&amp;user%5Busername%5D=%%_random_username%%&amp;user%5Bemail%5D=%%_random_username%%%40ucla.edu&amp;user%5Bpassword%5D=password1&amp;user%5Bpassword_confirmation%5D=password1&amp;commit=Sign+up'>
         </http>
       </request>
 
