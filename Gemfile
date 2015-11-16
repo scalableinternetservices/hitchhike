@@ -79,3 +79,6 @@ gem "geo-distance", "~> 0.2.0"
 gem 'gmaps-autocomplete-rails'
 #gem 'searchkick'
 #gem 'kaminari'
+
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
