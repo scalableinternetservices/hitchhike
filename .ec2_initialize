@@ -5,4 +5,7 @@ sudo rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-6.rpm
 sudo yum --enablerepo=remi,remi-test install -y redis
 nohup redis-server &
 cd /home/ec2-user/app
-rake db:seed
+sudo gem uninstall bundler
+gem install bundler
+rbenv rehash
+bundle exec rake db:seed
