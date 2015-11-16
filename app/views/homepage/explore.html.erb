@@ -95,7 +95,11 @@
                       console.log("FAIL!");
                   }
                   function showPosition(position) {
-                      $('#nearby-partial').load('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude +" #nearby-partial, script");
+                      $('#nearby-partial').load('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude +" #nearby-partial, script",
+                              function() {
+                                  initializeMaps();
+                              }
+                      );
                       console.log('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude);
                   }
               });

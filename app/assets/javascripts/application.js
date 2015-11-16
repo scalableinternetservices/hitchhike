@@ -23,3 +23,4 @@
 //= require gmaps-auto-complete
 //= require turbolinks
 //= require_tree .
+//= require hitchhike-maps.js

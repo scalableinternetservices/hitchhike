@@ -5,7 +5,10 @@
           <div id="page-container">
             <% @trips.each_with_index do |trip, index| %>
                 <div class="slide col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-                  <div class="row users-badge-image" id="nearbyMap<%= index %>"></div>
+                  <div class="row users-badge-image inactive-map" id="nearbyMap<%= index %>">
+                    <input type="hidden" value="<%=trip.locations.first.lat %>" class='lat'>
+                    <input type="hidden" value="<%=trip.locations.first.lng %>" class='lng'>
+                  </div>
                   <div class="row users-badge-subtitle">
                     <span style="float: center;" id="star<%= index %>"></span>
                   </div>
