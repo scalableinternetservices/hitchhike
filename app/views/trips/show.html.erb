@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
 
   <style>
+    
       html, body {
           height: 90%;
           width: 90%;
@@ -135,7 +138,7 @@
             if (status === google.maps.DirectionsStatus.OK) {
               directionsDisplay.setDirections(response);
             } else {
-              window.alert('Directions request failed due to ' + status);
+            //  window.alert('Directions request failed due to ' + status);
             }
           });
         }
@@ -210,6 +213,7 @@
       <strong>Rate this trip!</strong>
       <div id="user_star"></div>
     </p>
+
 
 
     <h2>Comments</h2>
