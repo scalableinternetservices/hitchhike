@@ -5,9 +5,12 @@
           <div id="page-container">
             <% @trips.each_with_index do |trip, index| %>
                 <div class="slide col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-                  <div class="row users-badge-image" id="map<%= index %>"></div>
+                  <div class="row users-badge-image inactive-map" id="nearbyMap<%= index %>">
+                    <input type="hidden" value="<%=trip.locations.first.lat %>" class='lat'>
+                    <input type="hidden" value="<%=trip.locations.first.lng %>" class='lng'>
+                  </div>
                   <div class="row users-badge-subtitle">
-                    <span style="float: center;" id="star<%= index %>"></span>
+                    <span style="float: center;" id="star<%= index %>" class='inactive-rating'><input class='rate' type="hidden" value="<%=trip.average_rating %>"></span>
                   </div>
 
                   <div class="row users-badge-title">
@@ -28,16 +31,16 @@
                     <%= link_to 'More', trip, class: "users-badge-button" %>
                   </div>
                 </div>
-            <% end %>
-            </div>
-      </div>
+          <% end %>
+        </div>
+    </div>
   <% else %>
       <h2>Nothing nearby!</h2>
   <% end %>
     <script>
-        function initMap() {
+        function nearbyMap() {
             <% @trips.each_with_index do |trip, index| %>
-            var map<%= index %> = new google.maps.Map(document.getElementById('map<%= index %>'), {
+            var map<%= index %> = new google.maps.Map(document.getElementById('nearbyMap<%= index %>'), {
                 center: {lat: <%= trip.locations.first.lat %>, lng: <%= trip.locations.first.lng %>},
                 zoom: 10,
                 mapTypeControl: false,
@@ -59,10 +62,9 @@
         <% end %>
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=nearbyMap"
             async defer></script>
     <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
     <%= javascript_include_tag "bootstrap.min" %>
 
-    </div>
-
+</div>

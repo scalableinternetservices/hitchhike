@@ -29,12 +29,13 @@ class LocationsController < ApplicationController
       @cmp = @cmp.sort! {|a,b| a[1] <=> b[1]}
       @trips = []
       @cmp.each { |trip|
-        if @trips.length < 12 && !@trips.include?(Trip.find_by_id(trip[0]))
+        if @trips.length < 6 && !@trips.include?(Trip.find_by_id(trip[0]))
           @trips.push(Trip.find_by_id(trip[0]))
         end
       }
+      @trips = @trips.first(6)
     else
-      @trips = [];
+      @trips = []
     end
   end
 

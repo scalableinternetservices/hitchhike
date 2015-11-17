@@ -11,7 +11,7 @@
 
       <h1 class="page-header">Public Trips</h1>
 
-      <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
+      <div class="col-sm-12 col-centered discover-result" id="discover-result" style="text-align: left;">
         <div id="page-container">
           <% @trips.each_with_index do |trip, index| %>
               <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
@@ -70,11 +70,12 @@
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC9HnSYF-HpEvHgLv4n04HupRWtp5n3h0&signed_in=false&libraries=places&callback=initMap"
               async defer></script>
         </div>
+
         <div id="nearby-partial">
         </div>
-      </div>
 
-  </div>
+      </div> <!-- col-sm-12 -->
+  </div> <!-- container -->
 
 
 <!-- Bootstrap core JavaScript
@@ -94,10 +95,15 @@
                       console.log("FAIL!");
                   }
                   function showPosition(position) {
-                      $('#nearby-partial').load('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude +" #nearby-partial, script");
+                      $('#nearby-partial').load('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude +" #nearby-partial, script",
+                              function() {
+                                  initializeMaps();
+                              }
+                      );
                       console.log('/nearby?lng='+position.coords.longitude+"&lat="+position.coords.latitude);
                   }
               });
+
   </script>
 </body>
 </html>

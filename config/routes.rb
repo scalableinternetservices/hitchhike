@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'trips' => 'users#show'
 
+  get 'nearby' => 'locations#_nearby'
+
   resources :locations
 
   resources :trips do
@@ -21,6 +23,5 @@ Rails.application.routes.draw do
 
   resources :ratings, only: :update
   resources :relationships,       only: [:create, :destroy]
-  get 'nearby' => 'locations#_nearby'
-  get 'nearby' => 'locations#_nearby'
+
 end
