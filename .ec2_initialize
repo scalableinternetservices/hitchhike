@@ -2,7 +2,8 @@ sudo yum install -y patch
 sudo yum install -y sqlite-devel
 sudo rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 sudo rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-6.rpm
-cd /home/ec2-user/app
-bundle exec rake db:seed
 sudo yum --enablerepo=remi,remi-test install -y redis
 nohup redis-server &
+cd /home/ec2-user/app
+bundle install
+bundle exec rake db:reset db:seed
