@@ -2,6 +2,7 @@
  * Created by jacob on 11/15/15.
  */
 var globalMaps = 0;
+var globalRating = 0;
 var maps = [];
 function initializeMaps() {
     $('.inactive-map').each(
@@ -23,5 +24,20 @@ function initializeMaps() {
             }));
             console.log("Pushed");
             globalMaps++;
+        });
+    $('.inactive-rating').each(
+        function(i) {
+            $(this).attr("id", "rating" + globalRating);
+            console.log($(this).children(".rate").val());
+            var rate = parseFloat($(this).children(".rate").val());
+            console.log("rate " + rate);
+            $(this).removeClass('inactive-rating');
+            $(this).raty({
+                    readOnly: true,
+                    score: rate,
+                    path: '/assets'
+             });
+            console.log("Rated");
+            globalRating++;
         });
 }

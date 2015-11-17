@@ -10,7 +10,7 @@
                     <input type="hidden" value="<%=trip.locations.first.lng %>" class='lng'>
                   </div>
                   <div class="row users-badge-subtitle">
-                    <span style="float: center;" id="star<%= index %>"></span>
+                    <span style="float: center;" id="star<%= index %>" class='inactive-rating'><input class='rate' type="hidden" value="<%=trip.average_rating %>"></span>
                   </div>
 
                   <div class="row users-badge-title">
