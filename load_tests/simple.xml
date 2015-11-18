@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-213-71.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-11-150-66.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -77,30 +77,18 @@
       <thinktime value="2" random="true"></thinktime>
 
       <!-- get the auth_token variable -->
-      <!-- <form action="/create" method="POST">
-        <input name="auth_token" type="hidden" value="gDTI=" />
-      </form> -->
-
       <request>
         <dyn_variable name="auth_token"></dyn_variable>
         <http url="/users/login" method="GET" version="1.1"></http>
       </request>
 
       <!-- post to /users/register to create a new user -->
-      <!-- <request subst="true">
-        <http
-          url='/users/login'
-          version='1.1'
-          method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
-        </http>
-      </request> -->
       <request subst="true">
         <http
           url='/users/login'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
         </http>
       </request>
 
@@ -130,23 +118,13 @@
       </request>
 
       <!-- post to /trips to create a new trip -->
-      <!-- <request subst="true">
-        <dyn_variable name="created_trip_id" re="[Ll]ocation: http://.*/trips/(.*)\r"/>
-        <http
-          url='/trips/new'
-          version='1.1'
-          method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token_new%%&amp;trip%5Btitle%5D=Test&amp;trip%5Bdescription%5D=testing&amp;trip%5Blocations%5D=%5B%7B%22lat%22%3A33.97548099999999%2C%22lng%22%3A-118.4632426%2C%22name%22%3A%22Random+Action%22%7D%2C%7B%22lat%22%3A34.050927%2C%22lng%22%3A-118.459968%2C%22name%22%3A%22Way+of+the+Future%22%7D%2C%7B%22lat%22%3A33.98971580000001%2C%22lng%22%3A-118.46321319999998%2C%22name%22%3A%22Another+Kind+of+Sunrise%22%7D%5D&amp;trip%5Btags%5D=%23test&amp;trip%5Bpostdate%281i%29%5D=2015&amp;trip%5Bpostdate%282i%29%5D=11&amp;trip%5Bpostdate%283i%29%5D=12&amp;trip%5Bpostdate%284i%29%5D=19&amp;trip%5Bpostdate%285i%29%5D=25&amp;commit=Create+Trip'>
-        </http>
-      </request> -->
-
       <request subst="true">
         <dyn_variable name="created_trip_id" re="[Ll]ocation: http://.*/trips/(.*)\r"/>
         <http
           url='/trips/new'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;trip%5Btitle%5D=Test&amp;trip%5Bdescription%5D=testing&amp;trip%5Blocations%5D=%5B%7B%22lat%22%3A33.97548099999999%2C%22lng%22%3A-118.4632426%2C%22name%22%3A%22Random+Action%22%7D%2C%7B%22lat%22%3A34.050927%2C%22lng%22%3A-118.459968%2C%22name%22%3A%22Way+of+the+Future%22%7D%2C%7B%22lat%22%3A33.98971580000001%2C%22lng%22%3A-118.46321319999998%2C%22name%22%3A%22Another+Kind+of+Sunrise%22%7D%5D&amp;trip%5Btags%5D=%23test&amp;trip%5Bpostdate%281i%29%5D=2015&amp;trip%5Bpostdate%282i%29%5D=11&amp;trip%5Bpostdate%283i%29%5D=12&amp;trip%5Bpostdate%284i%29%5D=19&amp;trip%5Bpostdate%285i%29%5D=25&amp;commit=Create+Trip'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token_new%%&amp;trip%5Btitle%5D=Test&amp;trip%5Bdescription%5D=testing&amp;trip%5Blocations%5D=%5B%7B%22lat%22%3A33.97548099999999%2C%22lng%22%3A-118.4632426%2C%22name%22%3A%22Random+Action%22%7D%2C%7B%22lat%22%3A34.050927%2C%22lng%22%3A-118.459968%2C%22name%22%3A%22Way+of+the+Future%22%7D%2C%7B%22lat%22%3A33.98971580000001%2C%22lng%22%3A-118.46321319999998%2C%22name%22%3A%22Another+Kind+of+Sunrise%22%7D%5D&amp;trip%5Btags%5D=%23test&amp;trip%5Bpostdate%281i%29%5D=2015&amp;trip%5Bpostdate%282i%29%5D=11&amp;trip%5Bpostdate%283i%29%5D=12&amp;trip%5Bpostdate%284i%29%5D=19&amp;trip%5Bpostdate%285i%29%5D=25&amp;commit=Create+Trip'>
         </http>
       </request>
 
@@ -175,31 +153,18 @@
       </request>
 
       <!-- get the auth_token variable -->
-      <!-- <form action="/create" method="POST">
-        <input name="auth_token2" type="hidden" value="gDTI=" />
-      </form> -->
-
       <request>
         <dyn_variable name="auth_token2"></dyn_variable>
         <http url="/trips/19/commments" method="GET" version="1.1"></http>
       </request>
 
       <!-- comment on the trip.  -->
-      <!-- <request>
-        <http
-          url='/trips/19/commments'
-          version='1.1'
-          method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token2%%&amp;comment%5Bbody%5D=super+cool&amp;commit=Add+comment'>
-        </http>
-      </request> -->
-
       <request>
         <http
           url='/trips/19/commments'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;comment%5Bbody%5D=super+cool&amp;commit=Add+comment'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token2%%&amp;comment%5Bbody%5D=super+cool&amp;commit=Add+comment'>
         </http>
       </request>
 
@@ -209,32 +174,20 @@
       </request>
 
       <!-- follow the user.  -->
-      <!-- get the auth_token variable -->
-      <!-- <form action="/create" method="POST">
-        <input name="auth_token3" type="hidden" value="gDTI=" />
-      </form> -->
 
+      <!-- get the auth_token variable -->
       <request>
         <dyn_variable name="auth_token3"></dyn_variable>
         <http url="/users/dougy" method="GET" version="1.1"></http>
       </request>
 
       <!-- comment on the trip.  -->
-      <!-- <request>
-        <http
-          url='/users/dougy'
-          version='1.1'
-          method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token3%%&amp;followed_id=11&amp;commit=Follow'>
-        </http>
-      </request> -->
-
       <request>
         <http
           url='/users/dougy'
           version='1.1'
           method='POST'
-          contents='utf8=%E2%9C%93&amp;followed_id=11&amp;commit=Follow'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token3%%&amp;followed_id=11&amp;commit=Follow'>
         </http>
       </request>
 
@@ -252,32 +205,20 @@
       </request>
 
       <!-- unfollow the user.  -->
-      <!-- get the auth_token variable -->
-      <!-- <form action="/create" method="POST">
-        <input name="auth_token4" type="hidden" value="gDTI=" />
-      </form> -->
 
+      <!-- get the auth_token variable -->
       <request>
         <dyn_variable name="auth_token4"></dyn_variable>
         <http url="/users/dougy" method="GET" version="1.1"></http>
       </request>
 
       <!-- comment on the trip.  -->
-      <!-- <request>
-        <http
-          url='/users/dougy'
-          version='1.1'
-          method='DELETE'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token4%%&amp;followed_id=11&amp;commit=Unfollow'>
-        </http>
-      </request> -->
-
       <request>
         <http
           url='/users/dougy'
           version='1.1'
           method='DELETE'
-          contents='utf8=%E2%9C%93&amp;followed_id=11&amp;commit=Unfollow'>
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token4%%&amp;followed_id=11&amp;commit=Unfollow'>
         </http>
       </request>
 
