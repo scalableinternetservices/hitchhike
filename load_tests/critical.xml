@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-248-125.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-34-193-44.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -117,6 +117,7 @@
         <http url="/trips/new" method="GET" version="1.1"></http>
       </request>
 
+      <!-- FATAL ERROR IN POST -->
       <!-- post to /trips to create a new trip -->
       <request subst="true">
         <dyn_variable name="created_trip_id" re="[Ll]ocation: http://.*/trips/(.*)\r"/>
@@ -242,6 +243,7 @@
 
       <!-- follow the user.  -->
       <!-- get the auth_token variable -->
+      <!-- FATAL ERROR IN POST -->
       <request>
         <dyn_variable name="auth_token3"></dyn_variable>
         <http url="/users/dougy" method="GET" version="1.1"></http>
@@ -271,6 +273,7 @@
 
       <!-- unfollow the user.  -->
       <!-- get the auth_token variable -->
+      <!-- FATAL ERROR IN POST -->
       <request>
         <dyn_variable name="auth_token4"></dyn_variable>
         <http url="/users/dougy" method="GET" version="1.1"></http>
