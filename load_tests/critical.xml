@@ -58,7 +58,7 @@
   </options>
 
   <sessions>
-    <session name="create-delete-trip" probability="100" type="ts_http">
+    <session name="create-delete-trip" probability="25" type="ts_http">
 
       <!-- start out at the dashboard. -->
       <request>
@@ -82,7 +82,7 @@
         <http url="/users/login" method="GET" version="1.1"></http>
       </request>
 
-      <!-- post to /users/register to create a new user -->
+      <!-- post to /users/login to sign in -->
       <request subst="true">
         <http
           url='/users/login'
@@ -139,8 +139,36 @@
         </http>
       </request>
 
+      <!-- logout of the account.  -->
+      <request>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
+      </request>
+
     </session>
-    <session name="explore-and-comment" probability="100" type="ts_http">
+    <session name="explore-and-comment" probability="25" type="ts_http">
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out login form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
+
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
+        </http>
+      </request>
 
       <!-- visit the explore page.  -->
       <request>
@@ -175,8 +203,38 @@
         </http>
       </request>
 
+      <!-- logout of the account.  -->
+      <request>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
+      </request>
+
     </session>
-    <session name="follow-another-user" probability="100" type="ts_http">
+    <session name="follow-another-user" probability="25" type="ts_http">
+
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out login form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
+
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
+        </http>
+      </request>
+
       <!-- view the user's profile.  -->
       <request>
         <http url='/users/dougy' version='1.1' method='GET'></http>
@@ -227,8 +285,37 @@
         </http>
       </request>
 
+      <!-- logout of the account.  -->
+      <request>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
+      </request>
+
     </session>
-    <session name="search-and-rate" probability="100" type="ts_http">
+    <session name="search-and-rate" probability="25" type="ts_http">
+
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out login form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
+
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
+        </http>
+      </request>
 
       <!-- search for a location.  -->
       <request>
