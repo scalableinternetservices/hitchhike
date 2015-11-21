@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-11-150-66.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-34-193-44.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -58,7 +58,7 @@
   </options>
 
   <sessions>
-    <session name="http-example" probability="100" type="ts_http">
+    <session name="create-delete-trip" probability="25" type="ts_http">
 
       <!-- start out at the dashboard. -->
       <request>
@@ -82,7 +82,7 @@
         <http url="/users/login" method="GET" version="1.1"></http>
       </request>
 
-      <!-- post to /users/register to create a new user -->
+      <!-- post to /users/login to sign in -->
       <request subst="true">
         <http
           url='/users/login'
@@ -117,25 +117,29 @@
         <http url="/trips/new" method="GET" version="1.1"></http>
       </request>
 
-      <!-- post to /trips to create a new trip -->
-      <request subst="true">
-        <dyn_variable name="created_trip_id" re="[Ll]ocation: http://.*/trips/(.*)\r"/>
-        <http
-          url='/trips/new'
-          version='1.1'
-          method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token_new%%&amp;trip%5Btitle%5D=Test&amp;trip%5Bdescription%5D=testing&amp;trip%5Blocations%5D=%5B%7B%22lat%22%3A33.97548099999999%2C%22lng%22%3A-118.4632426%2C%22name%22%3A%22Random+Action%22%7D%2C%7B%22lat%22%3A34.050927%2C%22lng%22%3A-118.459968%2C%22name%22%3A%22Way+of+the+Future%22%7D%2C%7B%22lat%22%3A33.98971580000001%2C%22lng%22%3A-118.46321319999998%2C%22name%22%3A%22Another+Kind+of+Sunrise%22%7D%5D&amp;trip%5Btags%5D=%23test&amp;trip%5Bpostdate%281i%29%5D=2015&amp;trip%5Bpostdate%282i%29%5D=11&amp;trip%5Bpostdate%283i%29%5D=12&amp;trip%5Bpostdate%284i%29%5D=19&amp;trip%5Bpostdate%285i%29%5D=25&amp;commit=Create+Trip'>
-        </http>
+    </session>
+    <session name="explore-and-comment" probability="25" type="ts_http">
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
       </request>
 
-      <!-- wait for up to 2 seconds, user decides to delete trip -->
+      <!-- wait for up to 2 seconds, user is filling out login form -->
       <thinktime value="2" random="true"></thinktime>
 
-      <!-- edit the trip we just created (fill out later) -->
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
 
-      <!-- delete the trip we just created -->
+      <!-- post to /users/login to sign in -->
       <request subst="true">
-        <http url="/trips/%%_created_trip_id%%" method="DELETE">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
         </http>
       </request>
 
@@ -147,24 +151,60 @@
       <!-- wait for up to 2 seconds, user decides to view a trip -->
       <thinktime value="2" random="true"></thinktime>
 
-      <!-- click on the first trip shown.  -->
+      <!-- visit a random trip  -->
+      <setdynvars sourcetype="random_number" start="1" end="30">
+        <var name="random_trip_id" />
+      </setdynvars>
+
       <request>
-        <http url='/trip/19' version='1.1' method='GET'></http>
+        <http url='/trip/%%_random_trip_id%%' version='1.1' method='GET'></http>
       </request>
 
       <!-- get the auth_token variable -->
       <request>
         <dyn_variable name="auth_token2"></dyn_variable>
-        <http url="/trips/19/commments" method="GET" version="1.1"></http>
+        <http url="/trips/%%_random_trip_id%%/commments" method="GET" version="1.1"></http>
       </request>
 
       <!-- comment on the trip.  -->
       <request>
         <http
-          url='/trips/19/commments'
+          url='/trips/%%_random_trip_id%%/commments'
           version='1.1'
           method='POST'
           contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token2%%&amp;comment%5Bbody%5D=super+cool&amp;commit=Add+comment'>
+        </http>
+      </request>
+
+      <!-- logout of the account.  -->
+      <request>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
+      </request>
+
+    </session>
+    <session name="follow-another-user" probability="25" type="ts_http">
+
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out login form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
+
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
         </http>
       </request>
 
@@ -173,54 +213,53 @@
         <http url='/users/dougy' version='1.1' method='GET'></http>
       </request>
 
-      <!-- follow the user.  -->
 
-      <!-- get the auth_token variable -->
+      <!-- logout of the account.  -->
       <request>
-        <dyn_variable name="auth_token3"></dyn_variable>
-        <http url="/users/dougy" method="GET" version="1.1"></http>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
       </request>
 
-      <!-- comment on the trip.  -->
+    </session>
+    <session name="search-and-rate" probability="25" type="ts_http">
+
+      <!-- sign in as an existing user.  -->
       <request>
-        <http
-          url='/users/dougy'
-          version='1.1'
-          method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token3%%&amp;followed_id=11&amp;commit=Follow'>
-        </http>
+        <http url='/users/login' version='1.1' method='GET'></http>
       </request>
 
-      <!-- view the trip owner's followers.  -->
-      <request>
-        <http url='/users/dougy/follow' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- wait for up to 2 seconds, user decides to unfollow the trip owner -->
+      <!-- wait for up to 2 seconds, user is filling out login form -->
       <thinktime value="2" random="true"></thinktime>
 
-      <!-- go back to the trip owner's profile.  -->
-      <request>
-        <http url='/users/dougy' version='1.1' method='GET'></http>
-      </request>
-
-      <!-- unfollow the user.  -->
-
       <!-- get the auth_token variable -->
       <request>
-        <dyn_variable name="auth_token4"></dyn_variable>
-        <http url="/users/dougy" method="GET" version="1.1"></http>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
       </request>
 
-      <!-- comment on the trip.  -->
-      <request>
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
         <http
-          url='/users/dougy'
+          url='/users/login'
           version='1.1'
-          method='DELETE'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token4%%&amp;followed_id=11&amp;commit=Unfollow'>
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
         </http>
       </request>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=vegas&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trip/3' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- not sure how to rate the trip!!! -->
 
       <!-- Uncomment the following to debug print your dynamic variables  -->
 

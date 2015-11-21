@@ -9,7 +9,7 @@
 
   <!-- Server side setup -->
   <servers>
-    <server host="ec2-52-33-248-125.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="ec2-52-34-193-44.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
   </servers>
 
 
@@ -58,7 +58,7 @@
   </options>
 
   <sessions>
-    <session name="create-delete-trip" probability="25" type="ts_http">
+    <session name="create-delete-trip" probability="10" type="ts_http">
 
       <!-- start out at the dashboard. -->
       <request>
@@ -117,6 +117,7 @@
         <http url="/trips/new" method="GET" version="1.1"></http>
       </request>
 
+      <!-- FATAL ERROR IN POST -->
       <!-- post to /trips to create a new trip -->
       <request subst="true">
         <dyn_variable name="created_trip_id" re="[Ll]ocation: http://.*/trips/(.*)\r"/>
@@ -145,7 +146,7 @@
       </request>
 
     </session>
-    <session name="explore-and-comment" probability="25" type="ts_http">
+    <session name="explore-and-comment" probability="50" type="ts_http">
       <!-- sign in as an existing user.  -->
       <request>
         <http url='/users/login' version='1.1' method='GET'></http>
@@ -175,33 +176,36 @@
         <http url='/explore' version='1.1' method='GET'></http>
       </request>
 
-      <!-- wait for up to 2 seconds, user decides to view a trip -->
-      <thinktime value="2" random="true"></thinktime>
+      <!-- visit and comment on 10 trips  -->
+      <for from="1" to="10" incr="1" var="counter">
+        <!-- wait for up to 2 seconds, user decides to view a trip -->
+        <thinktime value="2" random="true"></thinktime>
 
-      <!-- visit a random trip  -->
-      <setdynvars sourcetype="random_number" start="1" end="30">
-        <var name="random_trip_id" />
-      </setdynvars>
+        <!-- visit a random trip  -->
+        <setdynvars sourcetype="random_number" start="1" end="30">
+          <var name="random_trip_id" />
+        </setdynvars>
 
-      <request>
-        <http url='/trip/%%_random_trip_id%%' version='1.1' method='GET'></http>
-      </request>
+        <request>
+          <http url='/trips/%%_random_trip_id%%' version='1.1' method='GET'></http>
+        </request>
 
-      <!-- get the auth_token variable -->
-      <request>
-        <dyn_variable name="auth_token2"></dyn_variable>
-        <http url="/trips/%%_random_trip_id%%/commments" method="GET" version="1.1"></http>
-      </request>
+        <!-- get the auth_token variable -->
+        <request>
+          <dyn_variable name="auth_token2"></dyn_variable>
+          <http url="/trips/%%_random_trip_id%%/commments" method="GET" version="1.1"></http>
+        </request>
 
-      <!-- comment on the trip.  -->
-      <request>
-        <http
-          url='/trips/%%_random_trip_id%%/commments'
-          version='1.1'
-          method='POST'
-          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token2%%&amp;comment%5Bbody%5D=super+cool&amp;commit=Add+comment'>
-        </http>
-      </request>
+        <!-- comment on the trip.  -->
+        <request>
+          <http
+            url='/trips/%%_random_trip_id%%/commments'
+            version='1.1'
+            method='POST'
+            contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token2%%&amp;comment%5Bbody%5D=super+cool&amp;commit=Add+comment'>
+          </http>
+        </request>
+      </for>
 
       <!-- logout of the account.  -->
       <request>
@@ -209,7 +213,7 @@
       </request>
 
     </session>
-    <session name="follow-another-user" probability="25" type="ts_http">
+    <session name="follow-another-user" probability="10" type="ts_http">
 
       <!-- sign in as an existing user.  -->
       <request>
@@ -242,6 +246,7 @@
 
       <!-- follow the user.  -->
       <!-- get the auth_token variable -->
+      <!-- FATAL ERROR IN POST -->
       <request>
         <dyn_variable name="auth_token3"></dyn_variable>
         <http url="/users/dougy" method="GET" version="1.1"></http>
@@ -271,6 +276,7 @@
 
       <!-- unfollow the user.  -->
       <!-- get the auth_token variable -->
+      <!-- FATAL ERROR IN POST -->
       <request>
         <dyn_variable name="auth_token4"></dyn_variable>
         <http url="/users/dougy" method="GET" version="1.1"></http>
@@ -291,7 +297,7 @@
       </request>
 
     </session>
-    <session name="search-and-rate" probability="25" type="ts_http">
+    <session name="search-and-rate" probability="30" type="ts_http">
 
       <!-- sign in as an existing user.  -->
       <request>
@@ -324,7 +330,59 @@
 
       <!-- visit the trip associated with the location.  -->
       <request>
-        <http url='/trip/3' version='1.1' method='GET'></http>
+        <http url='/trips/3' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=london&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/6' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=forest&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/28' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=china&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/2' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=beach&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/27' version='1.1' method='GET'></http>
       </request>
 
       <!-- wait for up to 2 seconds, user decides to rate the trip -->
