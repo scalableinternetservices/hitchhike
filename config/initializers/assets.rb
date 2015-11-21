@@ -17,3 +17,6 @@ Rails.application.config.assets.precompile += %w( ie-emulation-modes-warning.js 
 Rails.application.config.assets.precompile += %w( ie10-viewport-bug-workaround.js )
 Rails.application.config.assets.precompile += %w( bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( raty.min.js )
+Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.woff )
+Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.woff2 )
+Rails.application.config.assets.precompile += %w( glyphicons-halflings-regular.ttf )
