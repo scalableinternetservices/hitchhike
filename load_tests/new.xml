@@ -1,0 +1,275 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/home/ec2-user/opt/tsung-1.5.0/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="notice" version="1.0">
+
+  <!-- Client side setup -->
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers='15000'/>
+  </clients>
+
+  <!-- Server side setup -->
+  <servers>
+    <server host="ec2-52-33-254-15.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+  </servers>
+
+
+  <load>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="1" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"></users>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"></users>
+    </arrivalphase>
+   <arrivalphase phase="4" duration="30" unit="second">
+     <users arrivalrate="8" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="5" duration="30" unit="second">
+     <users arrivalrate="16" unit="second"></users>
+   </arrivalphase>
+   <arrivalphase phase="6" duration="30" unit="second">
+     <users arrivalrate="32" unit="second"></users>
+   </arrivalphase>
+  </load>
+
+  <options>
+    <!-- Set connection timeout to 2 seconds -->
+    <option name="global_ack_timeout" value="2000"></option>
+
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+  <sessions>
+  	<!-- works! -->
+    <session name="create-trip" probability="10" type="ts_http">
+
+      <!-- start out at the dashboard. -->
+      <request>
+        <http url='/' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is looking at splash page -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out login form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
+
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
+        </http>
+      </request>
+
+      <!-- visit the user's profile page.  -->
+      <request>
+        <http url='/users/GabbyYang' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- user goes to create a new trip.  -->
+      <request>
+        <http url='/trips/new?' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out new trip form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- create a random number to make a unique location name -->
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="random_location_name" />
+      </setdynvars>
+
+      <!-- get the auth_token variable -->
+
+      <request>
+        <dyn_variable name="auth_token_new"></dyn_variable>
+        <http url="/trips/new" method="GET" version="1.1"></http>
+      </request>
+
+
+      <!-- post to /trips to create a new trip -->
+
+      <request subst="true">
+        <dyn_variable name="created_trip_id" re="[Ll]ocation: http://.*/trips/(.*)\r"/>
+        <http
+          url='/trips'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token_new%%&amp;trip%5Btitle%5D=Test&amp;trip%5Bdescription%5D=testing&amp;trip%5Blocations%5D=%5B%7B%22lat%22%3A33.97548099999999%2C%22lng%22%3A-118.4632426%2C%22name%22%3A%22Random+Action%22%7D%2C%7B%22lat%22%3A34.050927%2C%22lng%22%3A-118.459968%2C%22name%22%3A%22Way+of+the+Future%22%7D%2C%7B%22lat%22%3A33.98971580000001%2C%22lng%22%3A-118.46321319999998%2C%22name%22%3A%22Another+Kind+of+Sunrise%22%7D%5D&amp;trip%5Btags%5D=%23test&amp;trip%5Bpostdate%281i%29%5D=2015&amp;trip%5Bpostdate%282i%29%5D=11&amp;trip%5Bpostdate%283i%29%5D=12&amp;trip%5Bpostdate%284i%29%5D=19&amp;trip%5Bpostdate%285i%29%5D=25&amp;commit=Create+Trip'>
+        </http>
+      </request>
+      <!-- wait for up to 2 seconds, user decides to delete trip -->
+      <thinktime value="2" random="true"></thinktime>
+      <!-- logout of the account.  -->
+      <request>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
+      </request>
+    </session>
+    <session name="explore-and-comment" probability="60" type="ts_http">
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out login form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
+
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
+        </http>
+      </request>
+
+      <!-- visit the explore page.  -->
+      <request>
+        <http url='/explore' version='1.1' method='GET'></http>
+      </request>
+
+    <request>
+      <http url='/trips/2' version='1.1' method='GET'></http>
+    </request>
+
+      <!-- logout of the account.  -->
+      <request>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
+      </request>
+
+    </session>
+    <session name="search-and-rate" probability="30" type="ts_http">
+
+      <!-- sign in as an existing user.  -->
+      <request>
+        <http url='/users/login' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out login form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- get the auth_token variable -->
+      <request>
+        <dyn_variable name="auth_token"></dyn_variable>
+        <http url="/users/login" method="GET" version="1.1"></http>
+      </request>
+
+      <!-- post to /users/login to sign in -->
+      <request subst="true">
+        <http
+          url='/users/login'
+          version='1.1'
+          method='POST'
+          contents='utf8=%E2%9C%93&amp;authenticity_token=%%_auth_token%%&amp;user%5Bemail%5D=gabriellayang%40ucla.edu&amp;user%5Bpassword%5D=password4&amp;user%5Bremember_me%5D=0&amp;commit=Log+in'>
+        </http>
+      </request>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=vegas&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/3' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=london&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/6' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=forest&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/28' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=china&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/2' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- search for a location.  -->
+      <request>
+        <http url="/locations?utf8=✓&amp;query=beach&amp;commit=" version='1.1' method='GET'></http>
+      </request>
+
+      <!-- visit the trip associated with the location.  -->
+      <request>
+        <http url='/trips/27' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user decides to rate the trip -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- not sure how to rate the trip!!! -->
+
+      <!-- Uncomment the following to debug print your dynamic variables  -->
+
+      <setdynvars sourcetype="eval" code="fun( {Pid, DynVars} ) ->
+        io:format([126, $p, 126, $n, 126, $n], [DynVars]),
+        ok end.">
+        <var name="dump" />
+      </setdynvars>
+
+
+      <!-- logout of the account.  -->
+      <request>
+        <http url='/users/sign_out' version='1.1' method='DELETE'></http>
+      </request>
+
+    </session>
+  </sessions>
+</tsung>
