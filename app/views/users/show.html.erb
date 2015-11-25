@@ -26,34 +26,36 @@
 
       <div class="col-sm-12  col-centered discover-result" id="discover-result" style="text-align: left;">
         <div id="page-container">
-          <% @trips.each_with_index do |trip, index| %>
-              <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
-                <div class="row users-badge-image" id="map<%= index %>"></div>
-                <div class="row users-badge-subtitle">
-                  <span style="float: left;"><%= link_to 'Edit', edit_trip_path(trip) %></span>
-                  <span style="float: center;" id="star<%= index %>"></span>
-                  <span style="float: right;"><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-                </div>
+          <% cache("profile_#{@user.id}") do %>
+            <% @trips.each_with_index do |trip, index| %>
+                <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
+                  <div class="row users-badge-image" id="map<%= index %>"></div>
+                  <div class="row users-badge-subtitle">
+                    <span style="float: left;"><%= link_to 'Edit', edit_trip_path(trip) %></span>
+                    <span style="float: center;" id="star<%= index %>"></span>
+                    <span style="float: right;"><%= link_to 'Delete', trip, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+                  </div>
 
-                <div class="row users-badge-title">
-                  <%= trip.title %>
-                </div>
+                  <div class="row users-badge-title">
+                    <%= trip.title %>
+                  </div>
 
-                <div class="row users-badge-school-subtitle">
-                  <% trip.locations.each do |loc| %>
-                      <%= loc.name %><br/>
-                  <% end %>
-                </div>
+                  <div class="row users-badge-school-subtitle">
+                    <% trip.locations.each do |loc| %>
+                        <%= loc.name %><br/>
+                    <% end %>
+                  </div>
 
-                <div class="row users-badge-subtitle">
-                  <%= trip.postdate %>
-                </div>
+                  <div class="row users-badge-subtitle">
+                    <%= trip.postdate %>
+                  </div>
 
-                <div class="row users-badge-more-btn">
-                  <%= link_to 'More', trip, class: "users-badge-button" %>
-                </div>
+                  <div class="row users-badge-more-btn">
+                    <%= link_to 'More', trip, class: "users-badge-button" %>
+                  </div>
 
-              </div>
+                </div>
+            <% end %>
           <% end %>
 
           <script>

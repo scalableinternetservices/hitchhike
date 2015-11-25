@@ -61,6 +61,7 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.save
         expire_fragment("latest_trips")
+        expire_fragment("profile_#{current_user.id}")
         @followers = Relationship.where(followed_id: current_user.id)
         @followers.each do |follower|
           @user = User.find(follower.follower_id)
@@ -80,6 +81,7 @@ class TripsController < ApplicationController
   def update
     respond_to do |format|
       if @trip.update(trip_params)
+        expire_fragment("profile_#{current_user.id}")
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { render :show, status: :ok, location: @trip }
       else
@@ -95,6 +97,7 @@ class TripsController < ApplicationController
     @owner = User.find(@trip.user_id)
     @trip.destroy
     respond_to do |format|
+      expire_fragment("profile_#{current_user.id}")
       format.html { redirect_to "/users/#{@owner.username}", notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end
