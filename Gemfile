@@ -46,6 +46,13 @@ gem 'autoprefixer-rails'
 # Public Activity Newsfeed
 gem 'public_activity'
 
+# Caching gem (Page and action)
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+
+# Use Dalli for memcached server
+gem 'dalli'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
