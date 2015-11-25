@@ -79,6 +79,7 @@ class TripsController < ApplicationController
   def update
     respond_to do |format|
       if @trip.update(trip_params)
+        expire_fragment("trip_#{@trip.id}")
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { render :show, status: :ok, location: @trip }
       else
@@ -94,6 +95,7 @@ class TripsController < ApplicationController
     @owner = User.find(@trip.user_id)
     @trip.destroy
     respond_to do |format|
+      expire_fragment("trip_#{@trip.id}")
       format.html { redirect_to "/users/#{@owner.username}", notice: 'Trip was successfully destroyed.' }
       format.json { head :no_content }
     end

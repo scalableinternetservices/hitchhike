@@ -5,6 +5,7 @@ class RatingsController < ApplicationController
     @trip = @rating.trip
     if @rating.update_attributes(score: params[:score])
       respond_to do |format|
+        expire_fragment("trip_#{@trip.id}")
         format.js
       end
     end
