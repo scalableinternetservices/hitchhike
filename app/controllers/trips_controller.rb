@@ -60,6 +60,7 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
+        expire_fragment("latest_trips")
         @followers = Relationship.where(followed_id: current_user.id)
         @followers.each do |follower|
           @user = User.find(follower.follower_id)
