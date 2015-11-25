@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HitchHike</title>
+  <link rel='shortcut icon' href="http://localhost:3000/assets/favicon-ec7a0a34ef8f7087caf5d9e681de080ed2d70021749c7bc48665e1735e0a515a.ico" type="image/x-icon"/>
+
+  <link rel="stylesheet" media="all" href="/assets/activities.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/bootstrap-theme.self-e8cf8299af3a128847924bb3e9764a3b7a7083e315c9e8ae63b6d069cd6d0cea.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/bootstrap-theme.min.self-2dba2730ddc67acf7b6c2a40186b56093cd8d1b6599cf2dfc27bcbfa88491882.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/bootstrap.self-84c2334a819becbcd7247d9860fc1af71a5afc963f3b7fe82ead897b3e2b086d.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/bootstrap.min.self-c05d30c64cd546e476765139eef09288a7c33d343b3b76e38057d36a1ce90ad8.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/carousel.self-ec8f9709bbef94707fcd66fed0b3d43b74cbd22868ab51d16184f08d6afe651a.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/comments.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/css.self-feabd61524df2bced54e08f62e345937488f898be80fa1e4ff476dad2467f454.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/endvrs-style.self-4a2a8322cba4d010c8622f112f6f2f8c67a8cc2f88cbdbdd6c51aa8554696d22.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/homepage.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/locations.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/points.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/relationships.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/scaffolds.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/trip.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/trips.self-37905863f20990901cc8819b444e33b89a4af446c5d67496ade225847ea43f5d.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/typeahead.self-b51cc903de0251cc512513e326d38c22dede286367047a8bb0b2b527acbf621d.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" data-turbolinks-track="true" />
+  <link rel="stylesheet" media="screen" href="/assets/css.self-feabd61524df2bced54e08f62e345937488f898be80fa1e4ff476dad2467f454.css?body=1" />
+  <link rel="stylesheet" media="screen" href="/assets/endvrs-style.self-4a2a8322cba4d010c8622f112f6f2f8c67a8cc2f88cbdbdd6c51aa8554696d22.css?body=1" />
+  <link rel="stylesheet" media="screen" href="/assets/bootstrap.min.self-c05d30c64cd546e476765139eef09288a7c33d343b3b76e38057d36a1ce90ad8.css?body=1" />
+  <script src="/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery.turbolinks.self-176b9819f30444d441e820bbccd3264fe57753aeafd54dec732b0dbc77129a2a.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/core.self-93be4d22eda916787802a64d8f88b52db8a9027d4ccbbc0942625324a7d12d44.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/widget.self-c1602241ddc51216b58391768667068867b8e15b9efc722befcd25771eda6819.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/accordion.self-c95f320275150a94241b004a91e21eef9c5ae9965a793cb3e2475f6078a1670d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/position.self-e693ced4ecfa1a276f0b794f32c1d30d792764b08788bf68ecfa3b388c291333.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/menu.self-7abc1c9401509a7e4fc609b1e461be6fd17e8116e8fda19cc59d05ba79aefb68.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/autocomplete.self-3befc48aba87cead090cfd014562b2771a662ac6d2c8197b24c08b2d9f3d9f2d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/button.self-4d4f21ba77bbf8cc08ae65e2b6329a7a1b952b32c3ba7bffca8313e7e8c93d0c.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/datepicker.self-6267be6d4d0f0e8665be3b4d6ac07f40ba23a32aff8eaa5d1bfc00f76a9eeae7.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/mouse.self-c513294e8da73f31f84ba3ef11e2a1180a47faea0eb2fea4a53fc26153dd21fd.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/draggable.self-debcca3d0d5d9afe2fe91a6fd1aebdb41ca0a55f2f6017352e6c02b6d8a6e64c.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/resizable.self-60b870565f3cd62982c1907828119bb51f42ec8228d5e23868153edc3abc685c.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/dialog.self-5a6c7980dfa3f6b74445b0f4b20eed799ee65363163500ed7f032e603d6b022d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/droppable.self-a7a2b4c2cec8fc176f51e4e4291d92bfd3eec40b6a580b47fc54c16334d52882.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect.self-3acdb29e7da09c8f0195b994d2f04d73bfef50dc539c84fd2c835d964d33e5c1.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-blind.self-ed102209d7aa0b7374f3db8478cc7dcff5f9980d3146e8bf9fbfab959c6d5d8a.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-bounce.self-bfcb9288797ecd234ddeedf4fbc5b4c9de94a4e6d8d44e6faa5b5e9836fad9fd.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-clip.self-7368e4597c32360b162d264ff8bbd0cf9fb1535eb9b4564e6eb7c1db3c774bf3.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-drop.self-294aaa72126ad9c94d6558cca792eb3716754713aca98f18a9dd7c493150ed92.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-explode.self-68e74dc114a52f3f4d7033e40c39196961bdcf439652daa2e98baa115c7bb44b.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-fade.self-42d542a5253e0a610717460102ee6bee339c656cc188e491d89eb0779043c963.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-fold.self-ad9967f153423916300dbf1104b00f7ad7bbd6a222a0fcc1012ebe251bcb13c8.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-highlight.self-f922b7179ab8ccfa7865141f38865bba0a3d2bdceba7561c27ca14544dbfd996.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-size.self-368aecefa09656a2be5c72dc8e685b120363a3df812134cbd2dd998bafa179fd.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-scale.self-884a5abcb6d90fcd9f9a071aa8329638184df688afced1b1d3b6be6c69f4dd7f.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-puff.self-93415831093923a70f671d73e8d0b3d94deb37ac7472a036a4add545f565c166.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-pulsate.self-eb107c0d136eccdfbd8a2f0f2ee71e0f6911cb300c6b63cc2fe4f6532e6a9a97.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-shake.self-63bcc14897aac5b84e10690be94d64d5724f864aa14c913b4d1030c461a256ad.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-slide.self-c93054a4a80d1f986760806d81ab067e4a4120bf103337e152ecc24d36e785f6.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/effect-transfer.self-181245634ec522320fc1081f6dbf94fd982f34eefa03555f76817dedfcdea336.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/progressbar.self-a259ff5a2a5e7aef0ec21bda94edd0f6bc1e9821128d901de415956edf212b0d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/selectable.self-42e53fc2f95211314e36a8094c42560f869c207f16d68cfc206aa37201dcdc03.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/selectmenu.self-09dbcac573f0e508194bd9deff254db090889b380d030261857860309c0918e8.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/slider.self-8af8d2a0661743ba88b4cfb99d5c8c874cfa3fc6528ae4e9252366b388def0b7.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/sortable.self-df2d80a36f9dfbe0facc596ccd92af83ca50d38e4cd6a84810aaf5d40b8cd181.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/spinner.self-3c8c95a7bc9c877d0f9c16789246bbedda6b8e8fbf5927951babdab775aed02e.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/tabs.self-dc07b44bf1b926c8d28ccd2658e30933881e5329348caf70cf305c3943f6bbd7.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui/tooltip.self-38f04ac3a6c8fb2391ec6832b68845671cc9013a94371b7eb239478f4835eb73.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery-ui.self-52111578aa54225c9ebfe06f78a62771020ee548bb27d62228ee3f5e6633969d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/affix.self-d2b642d8fbfc1d7041e2edefd66683ada567a980789dcd6f94fddda0b33408b5.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/alert.self-a29e91e8cd3ddaba9bbc466901d53ec2127e9256b9b941905d525a3a716bd1a5.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/button.self-a6cb16785434acb365ae426aef9f1fce05ed553cae7a965e4471c3da71509175.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/carousel.self-57eb8422043cf0a85b7a9dc6843916eb0a3e35b419c7798a5eb254b918997631.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/collapse.self-7dc8bfbc2fbfabd2bad62c58ff8ffeaf8f20fb87c7ca6cd35f06d4dc19632587.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/dropdown.self-9314126777c6be5443e37ea7f7967d7914d72b3e60449ba50edc967446373059.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/tab.self-122235057fbd4c6c7da377d59dc58f47b44cb1088a2e38e6ee6ce9d8ac29a26a.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/transition.self-09ff30b1e8a93d1f7728b9855f55d9c9d8d5734c8861e0d8139994e50944572a.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/scrollspy.self-a155b9d4b2f978905f0326c0f6635e1134fe91c6bfbfcbad079fa24a9fef2b0e.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/modal.self-72f95ffa1071297725a9ac91989693d56d1abf23f441a47455073b0da2857a5b.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/tooltip.self-11cf547be953f25f511cec668f6690473fd97b2f65502e4032f4030999a3f0c3.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap/popover.self-77d8e3a2499c1104ef146396a68b82469ee2bdb365199b874694698d10405e9a.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/typeahead.bundle.self-7d0ec0be4d31a26122c3f2780527cd624a8bcbd7350f5f5d6cb23a5a51f516ef.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/underscore.self-4f5b2528815d8b1cd9b68b1a4bb1fe689696f8dcbc2c4a5104343b886ee68828.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/base.self-8dd1d1a22a7ff3bf4faa70885ea5f452367e7249102c52508c66d85ca396ee8b.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/base/base.self-5c31367e8435d872a028f6605074c8b1e15b9469a128b92dd29dfe40165b8ca3.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/objects/base_builder.self-2a2088185a25893bbee6bf3da7fde2f1160e33f9903e29e01701ecdf87326e98.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/objects/builder.self-77682740ac05e1b18efcf955f75aabdc3877aeee1ee4d5d6fddc74f8a08009ea.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/objects/handler.self-2f220cab5c91a054a6ee7f5b4c1eaab6edd160062ee3709c81714c18a6fbefa3.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/objects/null_clusterer.self-c6d6f37e996f50b27bf70e66b8956ee03cd4f3e35ae2e69c7b03e9dff7ea48e3.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/common.self-4b07ecd5e825fd2ba2793cb0323b0f19636ae2343ad8e8e9fe419152107b8ab4.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/bound.self-f340597454ebfa045f68c5f93f61cff52646146ec38c903a2769e5b0501cd687.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/circle.self-188e8cef42efa47cf5a4a3956af3dc67a3d6651bc2a9ca220cfcb6fc3e463e35.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/clusterer.self-a1f1a7df46fc8cecc592eef0f15b9e02f3431c8fa70ed30ce4de854e7facb5c4.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/kml.self-ffee6612ec52f7bcd758c1b5370a0e803412189ce09773551831e6c06a3375b1.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/map.self-6de83910df5426e7f72211a33d291d790c3198744bdced71b84572bfca56201c.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/marker.self-742a43efffcab09bde1334c67758f411c41e4fa1df3dd5a39e498e7f7e78e27c.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/polygon.self-08644c000d23e711283ea74461680417f8e6c30fe6c32c3dcb7cc9395e9e3f17.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/builders/polyline.self-22e88b34eec70842a3547dd072bbf85a45c001b0a479fc11ec22bd242b6703f4.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/bound.self-d13a639bd7207854bf9ef3f6df82bea172352162b142f56e7032ff7ac9193b1e.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/circle.self-33825f7d2fed1c7ba3c7afae7bd2e4f616b77373660fb65d895affcc5c952610.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/clusterer.self-4f2479016fe0e484ef10477924f1bd0df5103bd5d9fca97dacb1a805369eae1d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/kml.self-5ec58fa580d178250382b8139e22df32db261af083e6ec63528aec06ac26f9c3.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/map.self-fbfa0453de0420c083e9daee1f103702e6fb765d977bd361ebca9265c754f1fc.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/marker.self-1cffb1966c70a5ca4fb34e8ac501dca0e7c42af09f3f99752caa5fc6f09b1d02.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/polygon.self-ceb351c472231550371b47497b02ad128fbf6e44c30482fb5c153ef880fad696.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/objects/polyline.self-d6d7caf58094ef9b48b3e93abdcc0f43c6b3fb204c882f4613577480cbe5d857.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google/primitives.self-5b8a3a670839d76c06f9877827daa0d739b27f8d6ebd346d7fc6006819755e65.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps/google.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/gmaps-auto-complete.self-4f972ec52feb2af3169e444e2e9d9c84e6798f29ae76241fc5346c6baccd0a9f.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/raty.min.self-9af0708b263649c7e0e11affba7b5930844b3b2f5d4f85df3ac9f99be2a35ae7.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/hitchhike-maps.self-ea66457d47ff9b5909f1c7e8538b4aa98ceb436d1a8541fcc0137878e24d6ca1.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/activities.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap.self-6c92f650931beefe48977f272b7015d6b9b45da8b09831ebf88e05193c12d355.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/bootstrap.min.self-075878ec6a19d24f3b46052eb9e0e5bb5c2a098ac50d05d8e3a21309d129273a.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/comments.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/customize.min.self-4e76b40992d8e27c6f8febed997086f61c3669b5aace7b405f5761c1b648c387.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/homepage.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/ie-emulation-modes-warning.self-6d7c9f6ece6c8ae31d4ac7728f3db3813364d31b8e2ca8ee816bc57d20d46aea.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/ie10-viewport-bug-workaround.self-f663fd5d5698e04a8e56de60c13c54abcb6943adcb21c3d5e80866d0eda0604d.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/ie8-responsive-file-warning.self-6824f4991a01c9c342d9f960689ecbca2db7bb95a97e122f4f5fa5d05be51cfe.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/locations.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/points.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/raw-files.min.self-99833b5b7c4d0009504b21089dfd71b391496ecd967f27e72082805ed7b8e276.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/relationships.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/trip.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/trips.self-9f1f75f52fafea36500678e423b8dc171b97637df7eed1bc857d5cc30631d9a6.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" data-turbolinks-track="true"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="f03XbLwDiTb57WJ3q7hI6J5Dwv1DWYs7IA+29Ka4lyj84fpAFglyvcGSi0rjbnTtvWnggJPBMCvEQLnKnSDSfg==" />
+
+  <!-- Hides google map's terms of use and logo -->
+  <style>
+    a[href^="http://maps.google.com/maps"]{display:none !important}
+    a[href^="https://maps.google.com/maps"]{display:none !important}
+
+    .gmnoprint a, .gmnoprint span, .gm-style-cc {
+      display:none;
+    }
+    .gmnoprint div {
+      background:none !important;
+    }
+    #map div div a div img {
+      display:none;
+    }
+  </style>
+</head>
+<body>
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/assets/ie-emulation-modes-warning.self-6d7c9f6ece6c8ae31d4ac7728f3db3813364d31b8e2ca8ee816bc57d20d46aea.js?body=1"></script>
+
+  <link rel="stylesheet" media="screen" href="/assets/carousel.self-ec8f9709bbef94707fcd66fed0b3d43b74cbd22868ab51d16184f08d6afe651a.css?body=1" />
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+
+  <!-- Carousel
+  ================================================== -->
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img class="first-slide" src="http://localhost:3000/assets/carousel1-e8cfdcf0e4ff93bcde703c52c28859bf32358b3b43a90f25f941d24351573548.gif" alt="First slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Where's your next getaway?</h1><br/><br/><br/><br/><br/>
+            <p><a class="btn btn-lg btn-primary" href="users/register" role="button">Sign up today!</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <img class="second-slide" src="http://localhost:3000/assets/carousel2-4e3a8d7ecee6b79c6b745053aa53eec0557908d92ce4986b4110003beb7ec66d.gif" alt="Second slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Explore the bustling streets of New York City</h1><br/><br/><br/><br/><br/><br/><br/>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <img class="third-slide" src="http://localhost:3000/assets/carousel3-31d60f1c5efba2fb3ab496ebc64507b4d2ca7fee25f3b5285829b5000433b1d5.gif" alt="Third slide">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Bask in the sun on Miami beaches</h1><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div><!-- /.carousel -->
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <img class="img-circle" src="http://localhost:3000/assets/splash1-fcde7103e63c34349b1b0ca00aae7863d3b1e0cda626279036a46a6d2a436ac0.jpg" alt="Generic placeholder image" width="140" height="140">
+        <h2>Plan Trips</h2>
+        <p>Build your dream vacation one destination at a time.</p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="img-circle" src="http://localhost:3000/assets/splash2-cb38e35cd9fb16aa060985c94828883fa5607cf5331fe7fd8fc21bcaf7dcf141.jpg" alt="Generic placeholder image" width="140" height="140">
+        <h2>Add Destinations</h2>
+        <p>Share popular tourist attractions with other users.</p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img class="img-circle" src="http://localhost:3000/assets/splash3-e33c0cb6d2eb25c83884ef2a5b9dfa4260ff20e8727768d39269b632d2c4fe12.jpg" alt="Generic placeholder image" width="140" height="140">
+        <h2>Share with the World</h2>
+        <p>Give recommendations to other users, or like and comment on existing trips.</p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Los Angeles → Hawaii</h2>
+        <p class="lead">HitchHike helped me explore all the best spots in Hawaii, from hiking at Hana Road to swimming with the dolphins in Maui. I will definitely be using HitchHike for all my future travels. Shoots brah!</p>
+        <p>- Thomas Park</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="http://localhost:3000/assets/reviewer1-8bc040dbb9a74d3a2b20ee7e8170d883e9763054bf08c86c381596cd201571a2.jpg" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading">San Diego → Seattle</h2>
+        <p class="lead">My girlfriend and I were researching tourist attractions in Washington and came across HitchHike. Looking at others' trips, we found a cool place to zipline in Seattle! Thanks HitchHike!</p>
+        <p>- Ryan Rodriguez</p>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <img class="featurette-image img-responsive center-block" src="http://localhost:3000/assets/reviewer2-a2eaf9acc7bcb2f7fb2a6ab066483765bef532de0d0ef13e095ddee63b4d470e.jpg" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">San Francisco → Yosemite</h2>
+        <p class="lead">My friends were planning to go on a trip, and thanks to HitchHike, we were able to decide on Yosemite. Thanks for making spring break a blast!</p>
+        <p>- Chris Lama</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="http://localhost:3000/assets/reviewer3-d3824a63bf0f1eb369781c68bf2a0eb840955a643026856d1f2d9784f1659863.jpg" alt="Generic placeholder image">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+
+    <!-- FOOTER -->
+    <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2015 HitchHike, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
+  </div><!-- /.container -->
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="/assets/bootstrap.min.self-075878ec6a19d24f3b46052eb9e0e5bb5c2a098ac50d05d8e3a21309d129273a.js?body=1"></script>
+  <script src="/assets/ie10-viewport-bug-workaround.self-f663fd5d5698e04a8e56de60c13c54abcb6943adcb21c3d5e80866d0eda0604d.js?body=1"></script>
+</body>
+</html>
+
+
+  <p class="notice"></p>
+  <p class="alert"></p>
+
+  <head>
+  <style>
+    #notice {
+      position: relative;
+      top: 15px;
+      right: 50px;
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<div class="navbar-wrapper">
+  <div class="container">
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost:3000/">HitchHike</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/explore">Explore</a></li>
+            <li><a href="/newsfeed">Newsfeed</a></li>
+            <li>
+              <form action="/locations" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+                <div class="master-search">
+                  <input type="text" name="query" id="locations-search" class="form-control typeahead" placeholder="Find a destination" />
+                  <!-- <input type="text" name="query" id="locations-search" class="form-control typeahead" placeholder="Find a destination" /> -->
+                </div>
+            </li>
+            <li>
+                <div class="search-button">
+                  <input type="submit" name="commit" value="" class="glyphicon glyphicon-search btn" />
+                </div>
+</form>            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="/users/jeffreytai">Profile</a></li>
+              <li><a href="/users/edit">Settings</a></li>
+              <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+</div>
+
+<script src="/assets/bootstrap.min.self-075878ec6a19d24f3b46052eb9e0e5bb5c2a098ac50d05d8e3a21309d129273a.js?body=1"></script>
+
+
+</body>
+</html>
