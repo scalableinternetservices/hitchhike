@@ -1,9 +1,11 @@
-<%= div_for comment do %>
-    <p>
-      <strong>
-        Posted <%= time_ago_in_words(comment.created_at) %> ago
-      </strong>
-      <br/>
-      <%= comment.body %>
-    </p>
+<% cache("trip_comments_#{@trip.id}") do %>
+  <%= div_for comment do %>
+      <p>
+        <strong>
+          Posted <%= time_ago_in_words(comment.created_at) %> ago
+        </strong>
+        <br/>
+        <%= comment.body %>
+      </p>
+  <% end %>
 <% end %>
