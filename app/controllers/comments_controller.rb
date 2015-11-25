@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        expire_fragment("trip_comments_#{@trip.id}")
         @user = User.find(@trip.user_id)
         @comment.create_activity :create, owner: current_user, recipient: @user
         format.html { redirect_to @trip, notice: 'Comment successfully added.' }
