@@ -8,6 +8,7 @@
 <!-- NAVBAR
 ================================================== -->
 <body>
+  <% cache("splash_page") do %>
 
   <!-- Carousel
   ================================================== -->
@@ -143,5 +144,7 @@
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" %>
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "ie10-viewport-bug-workaround" %>
+
+  <% end %>
 </body>
 </html>
