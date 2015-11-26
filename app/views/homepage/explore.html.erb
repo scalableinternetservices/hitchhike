@@ -13,8 +13,8 @@
 
       <div class="col-sm-12 col-centered discover-result" id="discover-result" style="text-align: left;">
         <div id="page-container">
-          <% @trips.each_with_index do |trip, index| %>
-            <% cache("latest_trips") do %>
+          <% cache("latest_trips") do %>
+            <% @trips.each_with_index do |trip, index| %>
               <div class="col-sm-5 col-centered col-sm-offset-1 users-badge-master">
                   <div class="row users-badge-image" id="map<%= index %>"></div>
                   <div class="row users-badge-subtitle">
