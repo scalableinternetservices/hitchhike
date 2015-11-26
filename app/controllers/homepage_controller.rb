@@ -1,9 +1,9 @@
 class HomepageController < ApplicationController
   # skip_before_filter :authenticate_user!
 
-  # before_filter :authenticate_user!
-  # caches_action :explore
-  # caches_action :splash
+  before_filter :authenticate_user!
+  caches_action :explore
+  caches_action :splash
 
   def splash
   end
