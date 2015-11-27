@@ -7,3 +7,4 @@ nohup redis-server &
 cd /home/ec2-user/app
 bundle install
 bundle exec rake db:reset db:seed
+bundle exec rake assets:precompile
