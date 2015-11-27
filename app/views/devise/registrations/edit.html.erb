@@ -7,7 +7,7 @@
 <body>
 
   <br/><br/><br/>
-  <% cache("user_edit") do %>
+  <% cache("user_edit", :expires_in => 1.day) do %>
   <div class="container">
     <div class="panel-body">
       <h2>Edit <%= resource_name.to_s.humanize %></h2>
