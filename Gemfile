@@ -89,4 +89,5 @@ gem 'gmaps-autocomplete-rails'
 
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
+gem 'activerecord-mysql-adapter'
 gem 'ar-octopus'
