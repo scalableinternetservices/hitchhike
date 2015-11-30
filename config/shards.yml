@@ -9,6 +9,7 @@ octopus:
       username: hitchhike
       password: 12341234
       reconnect: true
+      port: 3306
     slave2:
       adapter: mysql
       host: hitchhike3.cz2moefkl3s1.us-west-2.rds.amazonaws.com
@@ -16,3 +17,4 @@ octopus:
       username: hitchhike
       password: 12341234
       reconnect: true
+      port: 3306
