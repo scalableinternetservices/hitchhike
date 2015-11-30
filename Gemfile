@@ -89,3 +89,4 @@ gem 'gmaps-autocomplete-rails'
 
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
+gem 'ar-octopus'
