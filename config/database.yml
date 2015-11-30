@@ -9,9 +9,11 @@ default: &default
   encoding: utf8
   database: hitchhike
   pool: 5
-  username: root
-  password:
+  username: hitchhike
+  password: 12341234
   socket: /private/tmp/mysql.sock
+  host: hitchhike.cz2moefkl3s1.us-west-2.rds.amazonaws.com
+  port: 3306
 
 development:
   <<: *default

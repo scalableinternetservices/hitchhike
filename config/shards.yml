@@ -1,0 +1,11 @@
+octopus:
+  replicated: true
+  production:
+    slave1:
+      adapter: mysql
+      host: hitchhike2.cz2moefkl3s1.us-west-2.rds.amazonaws.com
+      database: octopus_slave1
+    slave2:
+      adapter: mysql
+      host: hitchhike3.cz2moefkl3s1.us-west-2.rds.amazonaws.com
+      database: octopus_slave2
