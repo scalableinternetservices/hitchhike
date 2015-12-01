@@ -4,7 +4,7 @@ octopus:
   production:
     slave1:
       adapter: mysql
-      host: hitchhike1.cz2moefkl3s1.us-west-2.rds.amazonaws.com:3306
+      host: hitchhike1.cz2moefkl3s1.us-west-2.rds.amazonaws.com
       database: hitchhike
       username: hitchhike
       password: 12341234

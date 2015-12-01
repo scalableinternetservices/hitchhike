@@ -6,4 +6,3 @@ sudo yum --enablerepo=remi,remi-test install -y redis
 nohup redis-server &
 cd /home/ec2-user/app
 bundle install
-bundle exec rake db:reset db:seed
