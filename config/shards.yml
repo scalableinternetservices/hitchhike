@@ -1,0 +1,20 @@
+octopus:
+  replicated: true
+  fully_replicated: true
+  production:
+    slave1:
+      adapter: mysql
+      host: hitchhike1.cz2moefkl3s1.us-west-2.rds.amazonaws.com
+      database: hitchhike
+      username: hitchhike
+      password: 12341234
+      reconnect: true
+      port: 3306
+    slave2:
+      adapter: mysql
+      host: hitchhike2.cz2moefkl3s1.us-west-2.rds.amazonaws.com
+      database: hitchhike
+      username: hitchhike
+      password: 12341234
+      reconnect: true
+      port: 3306
