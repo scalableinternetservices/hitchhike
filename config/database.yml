@@ -16,8 +16,15 @@ default: &default
   port: 3306
 
 development:
-  <<: *default
-  #database: hitchhike
+  adapter: mysql2
+  encoding: utf8
+  database: hitchhike
+  pool: 5
+  username: hitchhike
+  password: 12341234
+  socket: /private/tmp/mysql.sock
+  host: hitchhike.cz2moefkl3s1.us-west-2.rds.amazonaws.com
+  port: 3306
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
